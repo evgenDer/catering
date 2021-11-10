@@ -1,0 +1,48 @@
+@import '~primereact/resources/themes/saga-blue/theme.css';
+@import '~primereact/resources/primereact.min.css';
+@import '../../styles/constants.scss';
+
+.menu  {
+  width: 20rem;
+  background-color: $background-sub-color;
+
+  .menu__panel {
+    margin-top: 1rem;
+    min-height: 100vh;
+    height: 100%;
+  }
+  
+  .p-panelmenu-header-link, .p-menuitem-link {
+    color: $menu-font-color !important;
+    background-color: $background-sub-color !important;
+    border: none !important;
+  }
+
+  .p-menuitem-text, .p-menuitem-icon {
+    color: $menu-font-color !important;
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+  }
+
+  .p-panelmenu-panel .p-panelmenu-content {
+    border: none;
+  }
+}
+
+.menu__title {
+  font-size: 2rem;
+  margin: 0;
+  padding: 1.5rem 0 0 3rem;
+  text-align: left;
+  color: $menu-font-color;
+
+  span {
+    color: $primary-color;
+  }
+}
+
+.menu__item_active {
+  .p-menuitem-text, .p-menuitem-icon {
+    color: $primary-color !important;
+  }
+}
