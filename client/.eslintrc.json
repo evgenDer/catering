@@ -1,0 +1,78 @@
+{
+  "env": {
+      "browser": true,
+      "es6": true,
+      "node": true,
+      "jest": true
+  },
+  "extends": [
+      "airbnb",
+      "airbnb/hooks",
+      "airbnb/whitespace"
+  ],
+  "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "react"
+  ],
+  "overrides": [
+      {
+          "files": ["**/*.test.js"],
+          "env": {
+              "jest": true
+          },
+          "plugins": ["jest"]
+      }
+  ],
+  "rules": {
+      "eol-last": "error",
+      "indent": ["error", 2],
+      "no-console": "warn",
+      "no-multiple-empty-lines": ["warn", { "max": 1, "maxBOF": 0, "maxEOF": 0 }],
+      "no-multi-spaces": "error",
+      "semi": "error",
+      "no-unused-expressions": ["warn", { "allowShortCircuit": true }],
+
+      "keyword-spacing": "warn",
+      "array-bracket-spacing": "warn",
+      "object-curly-spacing": "warn",
+      "semi-spacing": "warn",
+      "key-spacing": "warn",
+      "space-in-parens": "warn",
+      "operator-linebreak": "warn",
+      "function-paren-newline": "warn",
+      "object-curly-newline": "warn",
+      "implicit-arrow-linebreak": "warn",
+      "react/jsx-wrap-multilines": "warn",
+      "react/jsx-curly-spacing": "warn",
+      "react/jsx-one-expression-per-line": "warn",
+      "react/jsx-closing-tag-location": "warn",
+      "react/jsx-indent": "warn",
+      "react-hooks/exhaustive-deps": "warn",
+      "react/jsx-tag-spacing": "warn",
+
+      "import/prefer-default-export": "off",
+      "multiline-ternary": "off",
+      "no-nested-ternary": "off"
+  },
+  "settings": {
+      "react": {
+          "version": "detect"
+      },
+      "import/resolver": {
+          "node": {
+              "paths": ["src", "src/constants"]
+          }
+      }
+  }
+}

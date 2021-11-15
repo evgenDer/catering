@@ -11,15 +11,13 @@ import { ROUTES } from 'constants/routes';
 import { AdminView } from 'components/Views';
 import ErrorPage from 'components/ErrorPage';
 
-const App = () => {
-  return (
-    <Routes>
-      <Route path={ROUTES.ROOT} element={<Navigate replace to={ROUTES.ADMIN} />} />
-      <Route path={`${ROUTES.ADMIN}/*`} element={<AdminView />} />
-      <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />
-    </Routes>
-  );
-};
+const App = () => (
+  <Routes>
+    <Route path={ROUTES.ROOT} element={<Navigate replace to={ROUTES.ADMIN} />} />
+    <Route path={`${ROUTES.ADMIN}/*`} element={<AdminView />} />
+    <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />
+  </Routes>
+);
 
 function mapStateToProps(state) {
   return {
