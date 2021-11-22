@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   AddShoppingCart,
+  Business,
   SupervisedUserCircle,
   LocalDining,
 } from '@mui/icons-material';
@@ -17,6 +18,11 @@ export const MENU = [
     icon: <SvgIcon color="secondary" component={AddShoppingCart} />,
     title: 'Заказы',
     link: ADMIN_ROUTES.ORDERS,
+  },
+  {
+    icon: <SvgIcon color="secondary" component={Business} />,
+    title: 'Организации',
+    link: ADMIN_ROUTES.ORGANIZATIONS,
   },
   {
     icon: <SvgIcon color="secondary" component={SupervisedUserCircle} viewBox="0 0 24 24" />,

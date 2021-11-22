@@ -8,6 +8,7 @@ export const ROUTES = {
 
 export const ADMIN_ROUTES = {
   ORDERS: 'orders',
+  ORGANIZATIONS: 'organizations',
   DISHES: 'dishes',
   USERS: 'users',
 };

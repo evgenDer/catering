@@ -10,6 +10,8 @@ import Menu from 'components/Menu';
 import { ADMIN_ROUTES, ROUTES } from 'constants/routes';
 import { TablePurchaseDishes } from 'components/Dishes';
 import DrawerHeader from 'components/DrawerHeader';
+import { TableOrganizations } from 'components/Organizations';
+
 import { MENU } from './menu';
 
 const AdminView = () => (
@@ -23,6 +25,7 @@ const AdminView = () => (
           element={<Navigate replace to={`${ROUTES.ADMIN}/${ADMIN_ROUTES.DISHES}`} />}
         />
         <Route path={ADMIN_ROUTES.DISHES} element={<TablePurchaseDishes />} />
+        <Route path={ADMIN_ROUTES.ORGANIZATIONS} element={<TableOrganizations />} />
       </Routes>
     </Box>
   </Box>

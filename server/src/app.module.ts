@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DishesModule } from './dishes/dishes.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { OrganizationsModule } from './organizations/organizations.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { AppService } from './app.service';
       }),
     }),
     DishesModule,
+    OrganizationsModule,
   ],
   controllers: [
     AppController,
