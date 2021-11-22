@@ -1,5 +1,3 @@
-import AdminMenu from './AdminMenu';
+import Menu from './Menu';
 
-export {
-  AdminMenu,
-};
+export default Menu;

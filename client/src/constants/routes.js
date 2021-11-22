@@ -7,23 +7,8 @@ export const ROUTES = {
 };
 
 export const ADMIN_ROUTES = {
-  ORDERS: {
-    ROOT: 'orders',
-    NEW: 'new',
-    IN_WORK: 'in-work',
-    READY: 'ready',
-    ON_DELIVERY: 'on-delivery',
-    COMPLETED: 'completed',
-    CANCELED: 'canceled',
-  },
-  DISHES: {
-    ROOT: 'dishes',
-    NEW: 'new',
-    LIST: 'list',
-  },
-  USERS: {
-    ROOT: 'users',
-    NEW: 'new',
-    LIST: 'list',
-  },
+  ORDERS: 'orders',
+  ORGANIZATIONS: 'organizations',
+  DISHES: 'dishes',
+  USERS: 'users',
 };
