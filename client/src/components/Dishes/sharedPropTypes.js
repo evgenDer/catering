@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 
 export const DishPropTypes = PropTypes.shape({
-  name: PropTypes.string.isRequired,
-  fat: PropTypes.number.isRequired,
-  protein: PropTypes.number.isRequired,
-  carbohydrates: PropTypes.number.isRequired,
-  calories: PropTypes.number.isRequired,
-  cost: PropTypes.number.isRequired,
-  count: PropTypes.number.isRequired,
+  name: PropTypes.string,
+  fat: PropTypes.string,
+  protein: PropTypes.string,
+  carbohydrates: PropTypes.string,
+  calories: PropTypes.string,
+  cost: PropTypes.string,
+  count: PropTypes.number,
   imageUrl: PropTypes.string,
 });

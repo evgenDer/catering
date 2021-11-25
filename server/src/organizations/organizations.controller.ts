@@ -12,6 +12,7 @@ import {
 
 import { HttpMessages } from '../app.dto';
 import { OrganizationsService } from './organizations.service';
+import { SkipAuth } from '../auth/skip-auth.decorator';
 
 @Controller('organizations')
 export class OrganizationsController {
@@ -19,6 +20,7 @@ export class OrganizationsController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
+  @SkipAuth()
   async getAll() {
     const organizations = await this.organizationService.getAll();
 

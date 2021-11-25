@@ -78,19 +78,9 @@ const OrganizationDialog = ({
                     error={!!errors.name}
                     helperText={errors.name}
                     fullWidth
+                    required
                   />
                 </Grid>
-                <Field
-                  as={TextField}
-                  name="cardNumber"
-                  label="Номер карты"
-                  variant="outlined"
-                  size="small"
-                  className={classes.field}
-                  error={!!errors.cardNumber}
-                  helperText={errors.cardNumber}
-                  fullWidth
-                />
               </Grid>
               <Grid container>
                 <Field
@@ -103,6 +93,7 @@ const OrganizationDialog = ({
                   error={!!errors.email}
                   helperText={errors.email}
                   fullWidth
+                  required
                 />
               </Grid>
               <Grid container>
@@ -116,6 +107,7 @@ const OrganizationDialog = ({
                   error={!!errors.phone}
                   helperText={errors.phone}
                   fullWidth
+                  required
                 />
               </Grid>
             </Form>

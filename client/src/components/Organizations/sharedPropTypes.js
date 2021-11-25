@@ -4,7 +4,6 @@ export const OrganizationPropType = PropTypes.shape({
   id: PropTypes.number,
   name: PropTypes.string,
   email: PropTypes.string,
-  cardNumber: PropTypes.string,
   phone: PropTypes.string,
   isActive: PropTypes.bool,
 });

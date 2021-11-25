@@ -72,6 +72,7 @@ const DishesDialog = ({
                     error={!!errors.name}
                     helperText={errors.name}
                     fullWidth
+                    required
                   />
                 </Grid>
                 <Grid container>
@@ -86,6 +87,7 @@ const DishesDialog = ({
                     error={!!errors.fat}
                     helperText={errors.fat}
                     fullWidth
+                    required
                   />
                 </Grid>
                 <Grid container>
@@ -100,6 +102,7 @@ const DishesDialog = ({
                     error={!!errors.protein}
                     helperText={errors.protein}
                     fullWidth
+                    required
                   />
                 </Grid>
                 <Grid container>
@@ -114,6 +117,7 @@ const DishesDialog = ({
                     error={!!errors.carbohydrates}
                     helperText={errors.carbohydrates}
                     fullWidth
+                    required
                   />
                 </Grid>
                 <Grid container>
@@ -128,6 +132,7 @@ const DishesDialog = ({
                     error={!!errors.count}
                     helperText={errors.count}
                     fullWidth
+                    required
                   />
                 </Grid>
                 <Grid container>
@@ -142,6 +147,7 @@ const DishesDialog = ({
                     error={!!errors.cost}
                     helperText={errors.cost}
                     fullWidth
+                    required
                   />
                 </Grid>
               </Grid>
