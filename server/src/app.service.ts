@@ -1,11 +1,10 @@
 import * as AWS from 'aws-sdk';
-import * as path from 'path';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly configService: ConfigService) { }
+  constructor(private readonly configService: ConfigService) {}
 
   async presignedUrl(fileName: string) {
     try {

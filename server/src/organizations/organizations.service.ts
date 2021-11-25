@@ -12,6 +12,10 @@ export class OrganizationsService {
     private readonly organizationRepo: Repository<Organization>,
   ) {}
 
+  getById(organizationId: number) {
+    return this.organizationRepo.findOne({ id: organizationId });
+  }
+
   getAll() {
     return this.organizationRepo.find();
   }

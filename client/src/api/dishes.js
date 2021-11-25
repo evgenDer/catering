@@ -1,11 +1,8 @@
-import axios from 'axios';
-import { config } from 'constants/api';
+import { http } from './config';
 
 export const getAllPurchasedProducts = async () => {
   try {
-    const response = await axios.get(
-      `${config.apiBaseUrl}dishes/purchase`,
-    );
+    const response = await http.get('/dishes/purchase');
 
     return response;
   } catch (error) {
@@ -16,8 +13,8 @@ export const getAllPurchasedProducts = async () => {
 
 export const deletePurchasedDishes = async (dishId) => {
   try {
-    const response = await axios.delete(
-      `${config.apiBaseUrl}dishes/purchase/${dishId}`,
+    const response = await http.delete(
+      `dishes/purchase/${dishId}`,
     );
 
     return response;
@@ -29,8 +26,8 @@ export const deletePurchasedDishes = async (dishId) => {
 
 export const updatePurchaseDish = async (dishId, purchaseDish) => {
   try {
-    const response = await axios.put(
-      `${config.apiBaseUrl}dishes/purchase/${dishId}`,
+    const response = await http.put(
+      `dishes/purchase/${dishId}`,
       purchaseDish,
     );
 
@@ -43,8 +40,8 @@ export const updatePurchaseDish = async (dishId, purchaseDish) => {
 
 export const createPurchaseDish = async (purchaseDish) => {
   try {
-    const response = await axios.post(
-      `${config.apiBaseUrl}dishes/purchase`,
+    const response = await http.post(
+      'dishes/purchase',
       purchaseDish,
     );
 

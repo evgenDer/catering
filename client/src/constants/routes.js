@@ -3,6 +3,7 @@ export const ROUTES = {
   ADMIN: '/admin',
   LOGIN: '/login',
   LOGOUT: '/logout',
+  REGISTER: '/register',
   NOT_FOUND: '*',
 };
 

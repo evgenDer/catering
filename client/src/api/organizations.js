@@ -1,10 +1,9 @@
-import axios from 'axios';
-import { config } from 'constants/api';
+import { http } from './config';
 
 export const getAllOrganizations = async () => {
   try {
-    const response = await axios.get(
-      `${config.apiBaseUrl}organizations`,
+    const response = await http.get(
+      'organizations',
     );
 
     return response;
@@ -16,8 +15,8 @@ export const getAllOrganizations = async () => {
 
 export const updateOrganization = async (organizationId, organization) => {
   try {
-    const response = await axios.put(
-      `${config.apiBaseUrl}organizations/${organizationId}`,
+    const response = await http.put(
+      `organizations/${organizationId}`,
       organization,
     );
 
@@ -30,8 +29,8 @@ export const updateOrganization = async (organizationId, organization) => {
 
 export const createOrganization = async (organization) => {
   try {
-    const response = await axios.post(
-      `${config.apiBaseUrl}organizations`,
+    const response = await http.post(
+      'organizations',
       organization,
     );
 

@@ -13,7 +13,7 @@ export class DishesService {
     @InjectRepository(Dish)
     private readonly dishRepo: Repository<Dish>,
     private connection: Connection,
-  ) { }
+  ) {}
 
   // TODO: move to constants out of component
   private readonly caloriesProtein = 4;
