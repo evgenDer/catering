@@ -37,7 +37,7 @@ export default (user = initialState, action) => {
   case CURRENT_USER:
     return {
       ...user,
-      ...action.payload.user,
+      ...action.payload,
     };
 
   default:

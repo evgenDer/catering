@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import { ADMIN_ROLE } from 'constants/application';
+import { ROLES } from 'constants/application';
 
 export const ERRORS = {
   MAX_LENGTH: 'Максимальная длина равна',
@@ -19,36 +19,36 @@ export const validationSchema = Yup.object().shape({
     .max(MAX_LENGTH, `${ERRORS.MAX_LENGTH} ${MAX_LENGTH}`),
   name: Yup.string().trim()
     .when('roleName', {
-      is: (roleName) => roleName !== ADMIN_ROLE,
+      is: (roleName) => roleName !== ROLES.ADMIN,
       then: Yup.string().required(ERRORS.REQUIRED)
         .max(MAX_LENGTH, `${ERRORS.MAX_LENGTH} ${MAX_LENGTH}`),
     }),
   surname: Yup.string().trim()
     .when('roleName', {
-      is: (roleName) => roleName !== ADMIN_ROLE,
+      is: (roleName) => roleName !== ROLES.ADMIN,
       then: Yup.string().required(ERRORS.REQUIRED)
         .max(MAX_LENGTH, `${ERRORS.MAX_LENGTH} ${MAX_LENGTH}`),
     }),
   birthday: Yup.date()
     .when('roleName', {
-      is: (roleName) => roleName !== ADMIN_ROLE,
+      is: (roleName) => roleName !== ROLES.ADMIN,
       then: Yup.date().required(ERRORS.REQUIRED),
     }),
   goalCalories: Yup.number()
     .when('roleName', {
-      is: (roleName) => roleName !== ADMIN_ROLE,
+      is: (roleName) => roleName !== ROLES.ADMIN,
       then: Yup.number().required(ERRORS.REQUIRED)
         .positive(ERRORS.POSITIVE),
     }),
   phone: Yup.string().trim()
     .when('roleName', {
-      is: (roleName) => roleName !== ADMIN_ROLE,
+      is: (roleName) => roleName !== ROLES.ADMIN,
       then: Yup.string().required(ERRORS.REQUIRED)
         .max(MAX_LENGTH, `${ERRORS.MAX_LENGTH} ${MAX_LENGTH}`),
     }),
   roleName: Yup.string().trim().required(ERRORS.REQUIRED),
   organizationId: Yup.number().when('roleName', {
-    is: (roleName) => roleName !== ADMIN_ROLE,
+    is: (roleName) => roleName !== ROLES.ADMIN,
     then: Yup.number().required(ERRORS.REQUIRED),
   }),
 });

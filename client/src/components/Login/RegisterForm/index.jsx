@@ -23,10 +23,10 @@ import { getRoles } from 'actions/roles';
 import { getAllOrganizations } from 'actions/organizations';
 import { ROUTES } from 'constants/routes';
 import { OrganizationPropType } from 'components/Organizations/sharedPropTypes';
+import { ROLES } from 'constants/application';
 
 import { createPayloadFromValues } from './utils';
 import { validationSchema } from './validation';
-import { ADMIN_ROLE } from 'constants/application';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -211,7 +211,7 @@ const RegisterForm = ({
                 as={TextField}
                 variant="outlined"
                 size="small"
-                disabled={values.roleName === ADMIN_ROLE}
+                disabled={values.roleName === ROLES.ADMIN}
                 error={!!errors.name}
                 helperText={errors.name}
                 required
@@ -224,7 +224,7 @@ const RegisterForm = ({
                 as={TextField}
                 variant="outlined"
                 size="small"
-                disabled={values.roleName === ADMIN_ROLE}
+                disabled={values.roleName === ROLES.ADMIN}
                 error={!!errors.surname}
                 helperText={errors.surname}
                 required
@@ -237,7 +237,7 @@ const RegisterForm = ({
                 error={!!errors.birthday}
                 helperText={errors.birthday}
                 maxDate={Date.now()}
-                disabled={values.roleName === ADMIN_ROLE}
+                disabled={values.roleName === ROLES.ADMIN}
                 onChange={(value) => {
                   setFieldValue('birthday', value);
                 }}
@@ -254,7 +254,7 @@ const RegisterForm = ({
                 variant="outlined"
                 size="small"
                 error={!!errors.organizationId}
-                disabled={values.roleName === ADMIN_ROLE}
+                disabled={values.roleName === ROLES.ADMIN}
                 required
               >
                 <InputLabel id="role-label">Организация</InputLabel>
@@ -292,7 +292,7 @@ const RegisterForm = ({
                 required
                 error={!!errors.goalCalories}
                 helperText={errors.goalCalories}
-                disabled={values.roleName === ADMIN_ROLE}
+                disabled={values.roleName === ROLES.ADMIN}
               />
               <Field
                 className={classes.input}
@@ -304,7 +304,7 @@ const RegisterForm = ({
                 size="small"
                 error={!!errors.phone}
                 helperText={errors.phone}
-                disabled={values.roleName === ADMIN_ROLE}
+                disabled={values.roleName === ROLES.ADMIN}
                 required
               />
               {errorMessage && (

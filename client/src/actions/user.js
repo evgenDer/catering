@@ -26,7 +26,6 @@ export const register = (user) => async (dispatch) => {
       payload: data.token,
     });
 
-    console.log(data);
     return Promise.resolve(data);
   } catch (err) {
     return Promise.reject(err);
@@ -45,6 +44,21 @@ export const getCurrentUser = () => async (dispatch) => {
 
     dispatch({
       type: types.CURRENT_USER,
+      payload: data,
+    });
+
+    return Promise.resolve(data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};
+
+export const getAllUsers = () => {
+  try {
+    const { data } = await UserService.getAllUsers();
+
+    dispatch({
+      type: types.RETRIEVE_USERS,
       payload: data,
     });
 

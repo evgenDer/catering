@@ -33,3 +33,14 @@ export const getCurrentUser = async (userData) => {
     return e;
   }
 };
+
+export const getAllUsers = async () => {
+  try {
+    const response = await http.get('/users');
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
