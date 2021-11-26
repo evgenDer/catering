@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { styled, useTheme } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
@@ -11,12 +12,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import DrawerHeader from 'components/DrawerHeader';
+import * as actions from 'actions/user';
 
 import ListItemLink from './ListItemLink';
 
@@ -87,7 +88,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const Menu = ({ listItems }) => {
+const Menu = ({ listItems, logout }) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -100,7 +101,7 @@ const Menu = ({ listItems }) => {
   };
 
   const handlerLogout = () => {
-    console.log('Logout');
+    logout();
   };
 
   return (
@@ -108,23 +109,35 @@ const Menu = ({ listItems }) => {
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
-          <IconButton
-            color="secondary"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: '36px',
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Logo>
-            V
-            <span>oo</span>
-            d
-          </Logo>
+          <Grid container>
+            <IconButton
+              color="secondary"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: '36px',
+                ...(open && { display: 'none' }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Logo>
+              V
+              <span>oo</span>
+              d
+            </Logo>
+          </Grid>
+          <Grid>
+            <Button
+              color="secondary"
+              aria-label="open drawer"
+              onClick={handlerLogout}
+              startIcon={<LogoutIcon color="secondary" />}
+            >
+              Выход
+            </Button>
+          </Grid>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -144,17 +157,15 @@ const Menu = ({ listItems }) => {
                 to={link}
               />
             ))}
-            <ListItem button onClick={handlerLogout}>
-              <ListItemIcon>
-                <LogoutIcon color="secondary" />
-              </ListItemIcon>
-              <ListItemText primary="Выход" />
-            </ListItem>
           </List>
         </nav>
       </Drawer>
     </>
   );
+};
+
+const mapDispatchToProps = {
+  logout: actions.logout,
 };
 
 Menu.propTypes = {
@@ -165,6 +176,7 @@ Menu.propTypes = {
       link: PropTypes.string,
     }),
   ).isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
-export default Menu;
+export default connect(null, mapDispatchToProps)(Menu);

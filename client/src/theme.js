@@ -46,6 +46,10 @@ const theme = createTheme({
       letterSpacing: '0.07em',
       lineHeight: '16.41px',
     },
+    caption: {
+      fontSize: '14px',
+      lineHeight: '14.06px',
+    },
   },
   palette: {
     background: {

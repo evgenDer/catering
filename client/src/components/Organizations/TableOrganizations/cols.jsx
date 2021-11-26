@@ -25,11 +25,6 @@ export const columns = [
     width: 210,
   },
   {
-    field: 'cardNumber',
-    headerName: 'Номер карты',
-    width: 150,
-  },
-  {
     field: 'isActive',
     headerName: 'Активный',
     width: 120,
