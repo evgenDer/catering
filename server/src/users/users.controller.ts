@@ -16,10 +16,10 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  async getAll(): Promise<GetUserDto[]> {
+  async getAll(): Promise<User[]> {
     const users: User[] = await this.usersService.getAll();
 
-    return users.map(this.usersService.mapToSend.bind(this.usersService));
+    return users;
   }
 
   @Get('/current')

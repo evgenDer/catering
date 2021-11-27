@@ -24,7 +24,7 @@ export const deletePurchaseDish = (id) => async (dispatch) => {
       payload: { id },
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -55,7 +55,7 @@ export const createPurchaseDish = (dish) => async (dispatch) => {
 
     return Promise.resolve(res.data);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return Promise.reject(err);
   }
 };

@@ -75,7 +75,6 @@ export class UsersService {
   }
 
   public mapToSend({ id, email, role, profile }: User): GetUserDto {
-    console.log(profile);
     return {
       id,
       email,

@@ -1,13 +1,10 @@
-/* eslint-disable indent */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   Navigate,
   Route,
   Routes,
-
-  useNavigate,
 } from 'react-router-dom';
 
 import { ROUTES } from 'constants/routes';
@@ -16,16 +13,18 @@ import ErrorPage from 'components/ErrorPage';
 import { LoginForm, RegisterForm } from 'components/Login';
 import { ROLES } from 'constants/application';
 import * as actions from 'actions/user';
+import BackdropLoader from 'components/BackdropLoader';
 
 const App = ({ user, getCurrentUser }) => {
-  const navigate = useNavigate();
-
   useEffect(() => {
     if (user.authorized) {
       getCurrentUser();
-      navigate('/');
     }
-  }, []);
+  }, [user.authorized]);
+
+  if (user.loading) {
+    return <BackdropLoader isLoading={user.loading} />;
+  }
 
   return (
     user.authorized ? (
@@ -35,8 +34,8 @@ const App = ({ user, getCurrentUser }) => {
           case ROLES.ADMIN:
             return (
               <>
-                <Route path={ROUTES.ROOT} element={<Navigate replace to={ROUTES.ADMIN} />} />
                 <Route path={`${ROUTES.ADMIN}/*`} element={<AdminView />} />
+                <Route path={ROUTES.ROOT} element={<Navigate to={ROUTES.ADMIN} />} />
               </>
             );
           case ROLES.HEAD_ORGANIZATION:
@@ -49,7 +48,7 @@ const App = ({ user, getCurrentUser }) => {
                       replace
                       to={ROUTES.HEAD_ORGANIZATION}
                     />
-                )}
+                  )}
                 />
                 <Route path={`${ROUTES.HEAD_ORGANIZATION}/*`} element={<AdminView />} />
               </>
@@ -60,7 +59,7 @@ const App = ({ user, getCurrentUser }) => {
                 <Route path={ROUTES.ROOT} element={<Navigate replace to={ROUTES.USER} />} />
                 <Route path={`${ROUTES.USER}/*`} element={<AdminView />} />
               </>
-          );
+            );
           default:
             return <></>;
           }
@@ -92,6 +91,7 @@ App.propTypes = {
     authorized: PropTypes.bool,
     token: PropTypes.string,
     roleName: PropTypes.string,
+    loading: PropTypes.bool,
   }).isRequired,
   getCurrentUser: PropTypes.func.isRequired,
 };

@@ -9,7 +9,7 @@ export const login = async (username, password) => {
 
     return response;
   } catch (e) {
-    console.log(e);
+    console.error(e);
     return e;
   }
 };

@@ -53,7 +53,7 @@ export const getCurrentUser = () => async (dispatch) => {
   }
 };
 
-export const getAllUsers = () => {
+export const getAllUsers = () => async (dispatch) => {
   try {
     const { data } = await UserService.getAllUsers();
 

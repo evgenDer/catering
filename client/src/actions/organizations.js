@@ -40,7 +40,7 @@ export const createOrganization = (organization) => async (dispatch) => {
 
     return Promise.resolve(res.data);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return Promise.reject(err);
   }
 };

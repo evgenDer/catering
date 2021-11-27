@@ -25,7 +25,7 @@ import { LOCALE_TEXT } from 'constants/localeText';
 import { presignedUploadUrl } from 'api/common';
 
 import { DishPropTypes } from '../sharedPropTypes';
-import { columns } from './constants';
+import { columns } from './cols';
 import DishDialog from '../DishDialog';
 import { createPayloadFromValues } from './utils';
 

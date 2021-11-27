@@ -118,7 +118,6 @@ const RegisterForm = ({
   const handleSubmit = async (values, { setSubmitting }) => {
     setSubmitting(true);
 
-    console.log(createPayloadFromValues(values, roles));
     register(createPayloadFromValues(values, roles)).then(() => {
       navigate('/');
     }).catch(() => {
@@ -179,7 +178,7 @@ const RegisterForm = ({
               <FormControl
                 variant="outlined"
                 size="small"
-                error={!!errors.roleId}
+                error={!!errors.roleName}
                 required
               >
                 <InputLabel id="role-label">Роль</InputLabel>
@@ -189,7 +188,7 @@ const RegisterForm = ({
                   as={Select}
                   id="role-select"
                   label="Роль"
-                  required
+                  type="text"
                   className={classes.input}
                   value={values.roleName || ''}
                 >
@@ -201,7 +200,7 @@ const RegisterForm = ({
                     ))
                   }
                 </Field>
-                <FormHelperText className={classes.input}>{errors.roleId}</FormHelperText>
+                <FormHelperText className={classes.errorText}>{errors.roleName}</FormHelperText>
               </FormControl>
               <Field
                 className={classes.input}
