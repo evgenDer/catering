@@ -15,3 +15,11 @@ export const ADMIN_ROUTES = {
   DISHES: 'dishes',
   USERS: 'users',
 };
+
+export const HEAD_ORGANIZATION_ROUTES = {
+  ORGANIZATION: 'organization',
+  PROFILE: 'profile',
+  STATISTICS: 'statistics',
+  USERS: 'users',
+  HISTORY_PAYMENT: 'history-payment',
+};

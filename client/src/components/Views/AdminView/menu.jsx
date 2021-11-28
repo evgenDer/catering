@@ -6,6 +6,7 @@ import {
   LocalDining,
 } from '@mui/icons-material';
 import { SvgIcon } from '@mui/material';
+
 import { ADMIN_ROUTES } from 'constants/routes';
 
 export const MENU = [

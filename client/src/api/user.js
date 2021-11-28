@@ -44,3 +44,14 @@ export const getAllUsers = async () => {
     return error;
   }
 };
+
+export const getUsersFromOrganization = async (organizationId) => {
+  try {
+    const response = await http.get(`/users/organization/${organizationId}`);
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};

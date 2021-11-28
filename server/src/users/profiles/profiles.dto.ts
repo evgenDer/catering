@@ -1,4 +1,3 @@
-import { organizationId } from 'aws-sdk/clients/auditmanager';
 import { Organization } from './../../organizations/organization.entity';
 
 export interface CreateProfileDto {
@@ -6,7 +5,7 @@ export interface CreateProfileDto {
   surname: string;
   birthday: Date;
   phone: string;
-  goalCalories: number;
+  goalCalories?: number;
   organization: Organization;
   organizationId?: number;
 }
@@ -17,6 +16,6 @@ export interface GetProfileDto {
   surname: string;
   birthday: Date;
   phone: string;
-  goalCalories: number;
+  goalCalories?: number;
   organizationId: number;
 }

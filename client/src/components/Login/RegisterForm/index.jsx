@@ -281,20 +281,6 @@ const RegisterForm = ({
               </FormControl>
               <Field
                 className={classes.input}
-                id="goalCalories"
-                label="Цель калорий"
-                type="number"
-                name="goalCalories"
-                as={TextField}
-                variant="outlined"
-                size="small"
-                required
-                error={!!errors.goalCalories}
-                helperText={errors.goalCalories}
-                disabled={values.roleName === ROLES.ADMIN}
-              />
-              <Field
-                className={classes.input}
                 id="phone"
                 label="Контактный номер телефона"
                 name="phone"
@@ -305,6 +291,19 @@ const RegisterForm = ({
                 helperText={errors.phone}
                 disabled={values.roleName === ROLES.ADMIN}
                 required
+              />
+              <Field
+                className={classes.input}
+                id="goalCalories"
+                label="Цель калорий"
+                type="number"
+                name="goalCalories"
+                as={TextField}
+                variant="outlined"
+                size="small"
+                error={!!errors.goalCalories}
+                helperText={errors.goalCalories}
+                disabled={values.roleName !== ROLES.USER}
               />
               {errorMessage && (
                 <Typography variant="caption" className={classes.errorMessage}>

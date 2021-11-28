@@ -8,8 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { ROUTES } from 'constants/routes';
-import { AdminView } from 'components/Views';
-import ErrorPage from 'components/ErrorPage';
+import { AdminView, HeadOrganizationView } from 'components/Views';
 import { LoginForm, RegisterForm } from 'components/Login';
 import { ROLES } from 'constants/application';
 import * as actions from 'actions/user';
@@ -28,44 +27,20 @@ const App = ({ user, getCurrentUser }) => {
 
   return (
     user.authorized ? (
-      <Routes>
+      <>
         {(() => {
           switch (user.roleName) {
           case ROLES.ADMIN:
-            return (
-              <>
-                <Route path={`${ROUTES.ADMIN}/*`} element={<AdminView />} />
-                <Route path={ROUTES.ROOT} element={<Navigate to={ROUTES.ADMIN} />} />
-              </>
-            );
+            return <AdminView />;
           case ROLES.HEAD_ORGANIZATION:
-            return (
-              <>
-                <Route
-                  path={ROUTES.ROOT}
-                  element={(
-                    <Navigate
-                      replace
-                      to={ROUTES.HEAD_ORGANIZATION}
-                    />
-                  )}
-                />
-                <Route path={`${ROUTES.HEAD_ORGANIZATION}/*`} element={<AdminView />} />
-              </>
-            );
+            return <HeadOrganizationView />;
           case ROLES.USER:
-            return (
-              <>
-                <Route path={ROUTES.ROOT} element={<Navigate replace to={ROUTES.USER} />} />
-                <Route path={`${ROUTES.USER}/*`} element={<AdminView />} />
-              </>
-            );
+            return <AdminView />;
           default:
             return <></>;
           }
         })()}
-        {user.roleName && <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />}
-      </Routes>
+      </>
     ) : (
       <Routes>
         <Route path={ROUTES.NOT_FOUND} element={<Navigate replace to={ROUTES.LOGIN} />} />

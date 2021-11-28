@@ -12,6 +12,7 @@ import { TablePurchaseDishes } from 'components/Dishes';
 import DrawerHeader from 'components/DrawerHeader';
 import { TableOrganizations } from 'components/Organizations';
 import { TableUsers } from 'components/Users';
+import ErrorPage from 'components/ErrorPage';
 
 import { MENU } from './menu';
 
@@ -21,13 +22,11 @@ const AdminView = () => (
     <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <DrawerHeader />
       <Routes>
+        <Route path="/" element={<Navigate replace to={ADMIN_ROUTES.DISHES} />} />
         <Route path={ADMIN_ROUTES.DISHES} element={<TablePurchaseDishes />} />
         <Route path={ADMIN_ROUTES.ORGANIZATIONS} element={<TableOrganizations />} />
         <Route path={ADMIN_ROUTES.USERS} element={<TableUsers />} />
-        <Route
-          path="/"
-          element={<Navigate replace to={`${ROUTES.ADMIN}/${ADMIN_ROUTES.DISHES}`} />}
-        />
+        <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />
       </Routes>
     </Box>
   </Box>

@@ -10,6 +10,6 @@ export const createPayloadFromValues = (values, roles) => ({
     surname: values.surname,
     birthday: values.birthday,
     phone: values.phone,
-    goalCalories: values.goalCalories,
+    goalCalories: values.goalCalories || null,
   } : null,
 });

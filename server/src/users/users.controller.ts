@@ -4,9 +4,11 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Param,
   Post,
   Req,
 } from '@nestjs/common';
+import { SkipAuth } from 'src/auth/skip-auth.decorator';
 import { User } from './user.entity';
 import { CreateUserDto, GetUserDto } from './users.dto';
 import { UsersService } from './users.service';
@@ -27,6 +29,14 @@ export class UsersController {
     const user: User = await this.usersService.getById(req.user?.id || '');
 
     return this.usersService.mapToSend(user);
+  }
+
+  @Get('/organization/:id')
+  @SkipAuth()
+  async getUsersFromOrganization(@Param('id') id) {
+    const users: User[] = await this.usersService.getUsersFromOrganization(id);
+
+    return users;
   }
 
   @Post()

@@ -12,8 +12,13 @@ export class OrganizationsService {
     private readonly organizationRepo: Repository<Organization>,
   ) {}
 
+  private readonly relations = ['profiles'];
+
   getById(organizationId: number) {
-    return this.organizationRepo.findOne({ id: organizationId });
+    return this.organizationRepo.findOne({
+      relations: this.relations,
+      where: { id: organizationId },
+    });
   }
 
   getAll() {

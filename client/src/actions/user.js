@@ -1,6 +1,7 @@
 import * as UserService from 'api/user';
 
 import * as types from 'constants/actionTypes';
+import { ROLES } from 'constants/application';
 
 export const login = (username, password) => async (dispatch) => {
   try {
@@ -53,9 +54,12 @@ export const getCurrentUser = () => async (dispatch) => {
   }
 };
 
-export const getAllUsers = () => async (dispatch) => {
+export const getAllUsers = () => async (dispatch, getState) => {
   try {
-    const { data } = await UserService.getAllUsers();
+    const { profile, roleName } = getState().user;
+    const { data } = roleName === ROLES.ADMIN
+      ? await UserService.getAllUsers()
+      : await UserService.getUsersFromOrganization(profile.organizationId);
 
     dispatch({
       type: types.RETRIEVE_USERS,

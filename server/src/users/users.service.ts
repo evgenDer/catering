@@ -1,7 +1,8 @@
+import { organizationId } from 'aws-sdk/clients/auditmanager';
 import { OrganizationsService } from './../organizations/organizations.service';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Raw, Repository } from 'typeorm';
 
 import { User } from './user.entity';
 import { CreateUserDto, GetUserDto } from './users.dto';
@@ -25,6 +26,22 @@ export class UsersService {
 
   async getAll(): Promise<User[]> {
     return this.userRepo.find({ relations: this.relations });
+  }
+
+  async getUsersFromOrganization(organizationId: number): Promise<User[]> {
+    // TODO: move to sql query
+    const organization = await this.organizationsService.getById(
+      organizationId,
+    );
+    const profileIds = await organization.profiles.map(({ id }) => id);
+    return this.userRepo.find({
+      relations: this.relations,
+      where: {
+        profile: Raw((alias) => `${alias} in (:...profileIds)`, {
+          profileIds,
+        }),
+      },
+    });
   }
 
   async getByEmail(email: string): Promise<User> {
