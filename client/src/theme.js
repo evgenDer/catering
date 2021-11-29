@@ -6,8 +6,9 @@ const appColors = {
   white: '#ffffff',
   primary: '#fb9500',
   secondary: '#54419e',
-  chartColor: '9588bc',
+  chartColor: '#9588bc',
   dangerous: '#FF0000',
+  darkPrimary: '#FF8C00',
 };
 
 const theme = createTheme({
@@ -58,6 +59,7 @@ const theme = createTheme({
     primary: {
       main: appColors.primary,
       contrastText: appColors.white,
+      dark: appColors.darkPrimary,
     },
     secondary: {
       main: appColors.secondary,

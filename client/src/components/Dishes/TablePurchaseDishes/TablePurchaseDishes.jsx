@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     height: theme.spacing(4),
-    marginTop: theme.spacing(2),
+    marginTop: `${theme.spacing(2)}!important`,
   },
   deleteButton: {
     color: theme.appColors.dangerous,

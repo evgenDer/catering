@@ -44,3 +44,54 @@ export const createOrganization = (organization) => async (dispatch) => {
     return Promise.reject(err);
   }
 };
+
+export const getOrganizationPayments = () => async (dispatch, getState) => {
+  try {
+    const { profile } = getState().user;
+    const { data } = await OrganizationService.getOrganizationPayments(profile.organizationId);
+
+    dispatch({
+      type: types.RETRIEVE_PAYMENTS,
+      payload: data,
+    });
+
+    return Promise.resolve(data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};
+
+export const getOrganizationInfo = () => async (dispatch, getState) => {
+  try {
+    const { profile } = getState().user;
+    const { data } = await OrganizationService.getOrganization(profile.organizationId);
+
+    dispatch({
+      type: types.RETRIEVE_ORGANIZATION,
+      payload: data,
+    });
+
+    return Promise.resolve(data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};
+
+export const createPayment = (payment) => async (dispatch, getState) => {
+  try {
+    const { profile } = getState().user;
+    const { data } = await OrganizationService.createOrganizationPayment(
+      profile.organizationId,
+      payment,
+    );
+
+    dispatch({
+      type: types.CREATE_ORGANIZATION_PAYMENT,
+      payload: data.payment,
+    });
+
+    return Promise.resolve(data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};

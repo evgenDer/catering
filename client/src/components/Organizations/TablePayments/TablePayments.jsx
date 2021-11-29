@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import {
   DataGrid,
   GridToolbarContainer,
   GridToolbarColumnsButton,
-  GridToolbarFilterButton,
+  GridToolbarExport,
 } from '@mui/x-data-grid';
+import { Grid, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
-import * as actions from 'actions/user';
+import * as actions from 'actions/organizations';
 import { LOCALE_TEXT } from 'constants/localeText';
 
 import { columns } from './cols';
-import { UserPropType } from '../sharedPropTypes';
+import { PaymentPropType } from '../sharedPropTypes';
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -30,34 +30,37 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 3),
   },
-  button: {
-    marginTop: theme.spacing(2),
-    height: theme.spacing(4),
-  },
 }));
 
-export const TableUsers = ({ users, getAllUsers }) => {
+export const TablePayments = ({ getPayments, payments }) => {
   const classes = useStyles();
 
   useEffect(() => {
-    getAllUsers();
+    getPayments();
   }, []);
 
   const CustomToolbar = () => (
-    <GridToolbarContainer>
-      <GridToolbarColumnsButton />
-      <GridToolbarFilterButton />
-    </GridToolbarContainer>
+    <Grid container>
+      <GridToolbarContainer>
+        <GridToolbarColumnsButton />
+        <GridToolbarExport
+          csvOptions={{ fileName: 'История платежей' }}
+        />
+      </GridToolbarContainer>
+    </Grid>
   );
 
   return (
     <>
-      <Typography variant="h5" className={classes.pageTitle}>Пользователи</Typography>
+      <Typography variant="h5" className={classes.pageTitle}>
+        История платежей
+      </Typography>
       <div className={classes.table}>
         <DataGrid
-          rows={users}
+          rows={payments}
           columns={columns}
           localeText={LOCALE_TEXT}
+          checkboxSelection
           components={{
             Toolbar: CustomToolbar,
           }}
@@ -68,16 +71,16 @@ export const TableUsers = ({ users, getAllUsers }) => {
 };
 
 const mapStateToProps = (state) => ({
-  users: state.users,
+  payments: state.organization?.payments,
 });
 
 const mapDispatchToProps = {
-  getAllUsers: actions.getAllUsers,
+  getPayments: actions.getOrganizationPayments,
 };
 
-TableUsers.propTypes = {
-  users: PropTypes.arrayOf(UserPropType).isRequired,
-  getAllUsers: PropTypes.func.isRequired,
+TablePayments.propTypes = {
+  payments: PropTypes.arrayOf(PaymentPropType).isRequired,
+  getPayments: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableUsers);
+export default connect(mapStateToProps, mapDispatchToProps)(TablePayments);

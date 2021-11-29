@@ -1,4 +1,3 @@
-import { organizationId } from 'aws-sdk/clients/auditmanager';
 import { OrganizationsService } from './../organizations/organizations.service';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,7 +8,6 @@ import { CreateUserDto, GetUserDto } from './users.dto';
 import { RolesService } from './roles/roles.service';
 import { Role } from './roles/role.entity';
 import { ProfilesService } from './profiles/profiles.service';
-import { Profile } from './profiles/profile.entity';
 import { HashService } from './hash/hash.service';
 
 @Injectable()

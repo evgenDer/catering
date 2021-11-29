@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 3),
   },
   button: {
-    marginTop: theme.spacing(2),
+    marginTop: `${theme.spacing(2)}!important`,
     height: theme.spacing(4),
   },
 }));
@@ -140,7 +140,9 @@ export const TableOrganizations = ({
           ) : (
             <Grid>
               <OrganizationDialog
-                initialValues={organizations.find((organization) => (organization.id === selectedRows[0]))}
+                initialValues={organizations.find(
+                  (organization) => (organization.id === selectedRows[0]),
+                )}
                 open={open}
                 onCancel={handleCloseDialog}
                 onConfirm={handleUpdate}

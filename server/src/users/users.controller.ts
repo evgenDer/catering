@@ -32,7 +32,6 @@ export class UsersController {
   }
 
   @Get('/organization/:id')
-  @SkipAuth()
   async getUsersFromOrganization(@Param('id') id) {
     const users: User[] = await this.usersService.getUsersFromOrganization(id);
 

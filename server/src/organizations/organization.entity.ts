@@ -1,3 +1,4 @@
+import { OrganizationPayment } from './organizations-payment/organization-payment.entity';
 import { Entity, Column, OneToMany } from 'typeorm';
 
 import { Profile } from './../users/profiles/profile.entity';
@@ -20,4 +21,7 @@ export class Organization extends BaseEntity {
 
   @OneToMany(() => Profile, (profile) => profile.organization)
   profiles: User[];
+
+  @OneToMany(() => OrganizationPayment, (profile) => profile.organization)
+  payments: OrganizationPayment[];
 }
