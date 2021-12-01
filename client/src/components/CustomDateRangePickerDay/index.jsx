@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/styles';
 import { Field } from 'formik';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';

@@ -1,25 +1,31 @@
 export const ROUTES = {
   ROOT: '/',
-  ADMIN: '/admin',
   LOGIN: '/login',
   LOGOUT: '/logout',
-  USER: '/user',
-  HEAD_ORGANIZATION: '/head-organization',
   REGISTER: '/register',
   NOT_FOUND: '*',
+  SHOP: 'shop',
+  CART: 'shop/cart',
+  ORDERS: 'orders',
+  USERS: 'users',
+  PROFILE: 'profile',
+  STATISTICS: 'statistics',
 };
 
 export const ADMIN_ROUTES = {
   ORDERS: 'orders',
   ORGANIZATIONS: 'organizations',
   DISHES: 'dishes',
-  USERS: 'users',
+  USERS: ROUTES.USERS,
 };
 
 export const HEAD_ORGANIZATION_ROUTES = {
   ORGANIZATION: 'organization',
-  PROFILE: 'profile',
-  STATISTICS: 'statistics',
-  USERS: 'users',
-  HISTORY_PAYMENT: 'history-payment',
+  PAYMENTS: 'payments',
+  STATISTICS: ROUTES.STATISTICS,
+  PROFILE: ROUTES.PROFILE,
+  USERS: ROUTES.USERS,
+  ORDERS: ROUTES.ORDERS,
+  SHOP: ROUTES.SHOP,
+  CART: ROUTES.CART,
 };

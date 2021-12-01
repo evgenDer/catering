@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  AddShoppingCart,
   Business,
   SupervisedUserCircle,
   LocalDining,
+  LocalShipping,
 } from '@mui/icons-material';
 import { SvgIcon } from '@mui/material';
 
@@ -16,7 +16,7 @@ export const MENU = [
     link: ADMIN_ROUTES.DISHES,
   },
   {
-    icon: <SvgIcon color="secondary" component={AddShoppingCart} />,
+    icon: <SvgIcon color="secondary" component={LocalShipping} />,
     title: 'Заказы',
     link: ADMIN_ROUTES.ORDERS,
   },

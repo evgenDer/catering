@@ -13,6 +13,8 @@ const initialState = {
   loading: false,
 };
 
+export const currentUser = (state) => state.user;
+
 const userReducer = {
   user: (user = initialState, action) => {
     switch (action.type) {
@@ -42,6 +44,9 @@ const userReducer = {
       return {
         ...user,
         ...action.payload,
+        account: {
+          balance: 0,
+        },
         loading: false,
       };
 
@@ -52,7 +57,7 @@ const userReducer = {
   users: (users = [], action) => {
     switch (action.type) {
     case RETRIEVE_USERS:
-      return action.payload;
+      return action.payload || [];
     default:
       return users;
     }

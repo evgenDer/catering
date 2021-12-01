@@ -11,7 +11,9 @@ import { HEAD_ORGANIZATION_ROUTES, ROUTES } from 'constants/routes';
 import DrawerHeader from 'components/DrawerHeader';
 import { TableUsers } from 'components/Users';
 import ErrorPage from 'components/ErrorPage';
+import { PageDishes } from 'components/Dishes';
 import { OrganizationProfile, TableOrganizationPayments } from 'components/Organizations';
+import PageCart from 'components/PageCart';
 
 import { MENU } from './menu';
 
@@ -27,9 +29,11 @@ const HeadOrganizationView = () => (
         <Route path={HEAD_ORGANIZATION_ROUTES.STATISTICS} element={<>Statistics</>} />
         <Route path={HEAD_ORGANIZATION_ROUTES.USERS} element={<TableUsers />} />
         <Route
-          path={HEAD_ORGANIZATION_ROUTES.HISTORY_PAYMENT}
+          path={HEAD_ORGANIZATION_ROUTES.PAYMENTS}
           element={<TableOrganizationPayments />}
         />
+        <Route path={HEAD_ORGANIZATION_ROUTES.SHOP} element={<PageDishes />} />
+        <Route path={HEAD_ORGANIZATION_ROUTES.CART} element={<PageCart />} />
         <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />
       </Routes>
     </Box>

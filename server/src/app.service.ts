@@ -20,7 +20,8 @@ export class AppService {
       const uploadUrl = await s3.getSignedUrlPromise('putObject', {
         Bucket: bucket,
         Key: fileKey,
-        ContentType: `image/${fileExtension}`,
+        ContentType:
+          fileExtension !== 'jpg' ? `image/${fileExtension}` : 'image/jpeg',
         Expires: 300,
       });
 

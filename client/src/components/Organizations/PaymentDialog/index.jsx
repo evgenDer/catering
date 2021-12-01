@@ -13,6 +13,7 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 
 import ConfirmationDialog from 'components/ConfirmationDialog';
 import CustomDateRangePickerDay from 'components/CustomDateRangePickerDay';
+import { formatAsPrice } from 'utils/order';
 // import { validationSchema } from './validation';
 
 const useStyles = makeStyles((theme) => ({
@@ -169,7 +170,7 @@ const PaymentDialog = ({
                 <Grid container className={classes.iconContainer}>
                   <SummarizeIcon color="secondary" />
                   <Typography>
-                    {`${+(values.sum / usersCount).toFixed(3)} руб`}
+                    {`${formatAsPrice((values.sum / usersCount).toFixed(3))}`}
                   </Typography>
                 </Grid>
               </Grid>

@@ -4,6 +4,8 @@ import dishes from './dishes';
 import organizationReducer from './organizations';
 import userReducer from './user';
 import roles from './roles';
+import counterReducer from './counter';
+import cartReducer from './cart';
 
 export default combineReducers({
   dishes,
@@ -12,4 +14,6 @@ export default combineReducers({
   users: userReducer.users,
   organization: organizationReducer.organization,
   organizations: organizationReducer.organizations,
+  counter: counterReducer,
+  cart: cartReducer
 });

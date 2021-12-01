@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,11 +17,13 @@ import Grid from '@mui/material/Grid';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import DrawerHeader from 'components/DrawerHeader';
+import Cart from 'components/Cart';
 import * as actions from 'actions/user';
+import { ROLES } from 'constants/application';
 
 import ListItemLink from './ListItemLink';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -88,7 +90,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const Menu = ({ listItems, logout }) => {
+const Menu = ({ listItems, logout, roleName }) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -128,12 +130,15 @@ const Menu = ({ listItems, logout }) => {
               d
             </Logo>
           </Grid>
-          <Grid>
+          {/* TODo: move to classes */}
+          <Grid container style={{ width: roleName !== ROLES.ADMIN ? '220px' : '100px' }}>
+            {roleName !== ROLES.ADMIN && <Cart />}
             <Button
               color="secondary"
               aria-label="open drawer"
               onClick={handlerLogout}
               startIcon={<LogoutIcon color="secondary" />}
+              style={{ textTransform: 'none', marginLeft: '10px' }}
             >
               Выход
             </Button>
@@ -164,11 +169,16 @@ const Menu = ({ listItems, logout }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  roleName: state.user.roleName,
+});
+
 const mapDispatchToProps = {
   logout: actions.logout,
 };
 
 Menu.propTypes = {
+  roleName: PropTypes.string.isRequired,
   listItems: PropTypes.arrayOf(
     PropTypes.shape({
       icon: PropTypes.node,
@@ -179,4 +189,4 @@ Menu.propTypes = {
   logout: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

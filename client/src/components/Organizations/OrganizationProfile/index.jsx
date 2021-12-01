@@ -22,6 +22,7 @@ import * as actions from 'actions/organizations';
 import PageTitle from 'components/PageTitle';
 import CustomDateRangePickerDay from 'components/CustomDateRangePickerDay';
 import BackdropLoader from 'components/BackdropLoader';
+import { formatAsPrice } from 'utils/order';
 
 import { OrganizationPropType } from '../sharedPropTypes';
 import PaymentDialog from '../PaymentDialog';
@@ -63,7 +64,7 @@ const OrganizationProfile = ({
 
   useEffect(() => {
     getOrganization();
-  }, [organization.currentPayment]);
+  }, []);
 
   const handleCloseDialog = () => {
     setOpen(false);
@@ -158,7 +159,7 @@ const OrganizationProfile = ({
                   <Typography>Текущая сумма</Typography>
                   <Grid container className={classes.iconContainer}>
                     <PaymentIcon color="secondary" />
-                    <Typography variant>{`${organization.currentPayment?.sum} руб`}</Typography>
+                    <Typography variant>{`${formatAsPrice(organization.currentPayment?.sum)}`}</Typography>
                   </Grid>
                 </Grid>
               )}

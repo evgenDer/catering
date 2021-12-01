@@ -1,3 +1,5 @@
+import { formatAsPrice } from 'utils/order';
+
 export const columns = [
   {
     field: 'id',
@@ -31,7 +33,8 @@ export const columns = [
   },
   {
     field: 'cost',
-    headerName: 'Цена (руб)',
+    headerName: 'Цена',
     width: 150,
+    renderCell: (params) => (`${formatAsPrice(params.value)}`),
   },
 ];
