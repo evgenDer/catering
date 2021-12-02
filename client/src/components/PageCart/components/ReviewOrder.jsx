@@ -14,8 +14,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ReviewOrder({ address, items, user, totalPrice }) {
   const classes = useStyles();
 
-  console.log(items, address, user);
-
   return (
     <>
       <Typography variant="h6" gutterBottom>

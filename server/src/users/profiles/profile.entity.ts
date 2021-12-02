@@ -1,8 +1,9 @@
-import { Entity, Column, ManyToOne, OneToOne } from 'typeorm';
+import { Entity, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 
 import { Organization } from './../../organizations/organization.entity';
 import { BaseEntity } from '../../base.entity';
 import { User } from '../user.entity';
+import { Account } from '../accounts/account.entity';
 
 @Entity({ name: 'profile' })
 export class Profile extends BaseEntity {
@@ -26,4 +27,8 @@ export class Profile extends BaseEntity {
 
   @OneToOne(() => User, (user) => user.profile)
   user: User;
+
+  @OneToOne(() => Account, (account) => account.profile)
+  @JoinColumn({ name: 'accountId' })
+  account: Account;
 }

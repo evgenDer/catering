@@ -7,12 +7,14 @@ export const addressValidationSchema = Yup.object().shape({
 
 export const orderItemValidationSchema = Yup.object({
   productId: Yup.string().required(),
+  accountId: Yup.string().required(),
   count: Yup.number().integer().positive().required(),
 }).defined();
 
 export const orderValidationSchema = Yup.object({
   id: Yup.string().required(),
   items: Yup.array().of(orderItemValidationSchema),
-  address: addressValidationSchema,
-  status: Yup.string().required(),
+  address: Yup.string().required(),
+  comment: Yup.string(),
+  totalPrice: Yup.number(),
 }).defined();

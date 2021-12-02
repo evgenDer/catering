@@ -9,11 +9,12 @@ import { Box } from '@mui/material';
 import Menu from 'components/Menu';
 import { HEAD_ORGANIZATION_ROUTES, ROUTES } from 'constants/routes';
 import DrawerHeader from 'components/DrawerHeader';
-import { TableUsers } from 'components/Users';
+import { TableUsers, UserProfile } from 'components/Users';
 import ErrorPage from 'components/ErrorPage';
 import { PageDishes } from 'components/Dishes';
 import { OrganizationProfile, TableOrganizationPayments } from 'components/Organizations';
 import PageCart from 'components/PageCart';
+import { PageActiveOrders } from 'components/Orders';
 
 import { MENU } from './menu';
 
@@ -25,8 +26,7 @@ const HeadOrganizationView = () => (
       <Routes>
         <Route path="/" element={<Navigate replace to={HEAD_ORGANIZATION_ROUTES.ORGANIZATION} />} />
         <Route path={HEAD_ORGANIZATION_ROUTES.ORGANIZATION} element={<OrganizationProfile />} />
-        <Route path={HEAD_ORGANIZATION_ROUTES.PROFILE} element={<>Profile</>} />
-        <Route path={HEAD_ORGANIZATION_ROUTES.STATISTICS} element={<>Statistics</>} />
+        <Route path={HEAD_ORGANIZATION_ROUTES.PROFILE} element={<UserProfile />} />
         <Route path={HEAD_ORGANIZATION_ROUTES.USERS} element={<TableUsers />} />
         <Route
           path={HEAD_ORGANIZATION_ROUTES.PAYMENTS}
@@ -34,6 +34,7 @@ const HeadOrganizationView = () => (
         />
         <Route path={HEAD_ORGANIZATION_ROUTES.SHOP} element={<PageDishes />} />
         <Route path={HEAD_ORGANIZATION_ROUTES.CART} element={<PageCart />} />
+        <Route path={HEAD_ORGANIZATION_ROUTES.ORDERS} element={<PageActiveOrders />} />
         <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />
       </Routes>
     </Box>

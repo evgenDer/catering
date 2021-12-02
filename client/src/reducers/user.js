@@ -44,9 +44,6 @@ const userReducer = {
       return {
         ...user,
         ...action.payload,
-        account: {
-          balance: 0,
-        },
         loading: false,
       };
 

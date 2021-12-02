@@ -15,6 +15,7 @@ import { selectCartItems, clearCart } from 'reducers/cart';
 import { currentUser } from 'reducers/user';
 import PageTitle from 'components/PageTitle';
 import { getCurrentUser } from 'actions/user';
+import { createOrder } from 'api/order';
 
 import { addressValidationSchema, orderValidationSchema } from './validation';
 import ReviewOrder from './components/ReviewOrder';
@@ -28,19 +29,23 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     fontSize: theme.spacing(3),
   },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    minHeight: '50vh',
+  },
   stepper: {
     padding: theme.spacing(3, 0, 5),
   },
   buttons: {
+    width: '100%',
     display: 'flex',
     justifyContent: 'flex-end',
   },
-  button: {
-    marginTop: theme.spacing(12),
-    marginLeft: theme.spacing(1),
-  },
 }));
 
+// TODO: create constants for steps
 const steps = ['Проверить корзину', 'Адрес доставки', 'Проверить заказ'];
 
 const initialAddressValues = addressValidationSchema.cast();
@@ -62,7 +67,7 @@ const Success = () => (
   </>
 );
 
-const renderForm = (user) => (
+const renderForm = () => (
   <>
     <Typography variant="h6" gutterBottom>
       Адрес доставки
@@ -107,7 +112,7 @@ export default function PageCart() {
   const [isFormValid, setIsFormValid] = useState(false);
   const dispatch = useDispatch();
 
-  const totalPrice = cartItems.reduce((total, item) => (item.count * item.product.cost + total), 0);
+  const totalCost = cartItems.reduce((total, item) => (item.count * item.product.cost + total), 0);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -117,14 +122,21 @@ export default function PageCart() {
     setActiveStep(activeStep + 1);
     if (activeStep === 2) {
       const formattedValues = orderValidationSchema.cast({
-        items: cartItems.map((i) => ({ productId: i.product.id, count: i.count })),
-        address,
+        items: cartItems.map((i) => ({
+          purchasedDishId: i.product.id,
+          count: i.count,
+        })),
+        accountId: user.profile.account.id,
+        address: address.address,
+        comment: address.comment,
+        totalCost,
       });
-      // axios.put(`${API_PATHS.order}/order`, formattedValues)
-      //   .then(() => {
-      //     dispatch(clearCart());
-      //     setActiveStep(activeStep + 1);
-      //   });
+
+      createOrder(formattedValues)
+        .then(() => {
+          dispatch(clearCart());
+          setActiveStep(activeStep + 1);
+        });
     }
   };
 
@@ -143,7 +155,7 @@ export default function PageCart() {
             </Step>
           ))}
         </Stepper>
-        <>
+        <div className={classes.form}>
           <Formik
             enableReinitialize={false}
             initialValues={initialAddressValues}
@@ -152,22 +164,20 @@ export default function PageCart() {
             isInitialValid={false}
           >
             {({ values, isValid }) => {
-              console.log(values, isValid);
               setAddress(values);
               setIsFormValid(isValid);
-              console.log(isValid);
 
               return (
                 <Form>
                   {isCartEmpty && activeStep === 0 && <CartIsEmpty />}
-                  {activeStep === 0 && !isCartEmpty && <ReviewCart totalPrice={totalPrice} />}
+                  {activeStep === 0 && !isCartEmpty && <ReviewCart totalPrice={totalCost} />}
                   {activeStep === 1 && renderForm()}
                   {activeStep === 2 && (
                     <ReviewOrder
                       address={address}
                       items={cartItems}
                       user={user}
-                      totalPrice={totalPrice}
+                      totalPrice={totalCost}
                     />
                   )}
                   {activeStep === 3 && <Success />}
@@ -190,14 +200,14 @@ export default function PageCart() {
                   onClick={handleNext}
                   className={classes.button}
                   disabled={(activeStep === 1 && !isFormValid)
-                    || totalPrice > user.account?.balance}
+                    || totalCost > user.profile.account?.balance}
                 >
                   {activeStep === steps.length - 1 ? 'Заказать' : 'Следующий'}
                 </Button>
               )}
             </div>
           )}
-        </>
+        </div>
       </PaperLayout>
     </>
   );

@@ -1,3 +1,4 @@
+import { Account } from '../accounts/account.entity';
 import { Organization } from './../../organizations/organization.entity';
 
 export interface CreateProfileDto {
@@ -8,6 +9,7 @@ export interface CreateProfileDto {
   goalCalories?: number;
   organization: Organization;
   organizationId?: number;
+  account: Account;
 }
 
 export interface GetProfileDto {
@@ -18,4 +20,6 @@ export interface GetProfileDto {
   phone: string;
   goalCalories?: number;
   organizationId: number;
+  organizationName: string;
+  account?: Account;
 }

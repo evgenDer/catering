@@ -13,6 +13,7 @@ import DrawerHeader from 'components/DrawerHeader';
 import { TableOrganizations } from 'components/Organizations';
 import { TableUsers } from 'components/Users';
 import ErrorPage from 'components/ErrorPage';
+import { TableOrders } from 'components/Orders';
 
 import { MENU } from './menu';
 
@@ -24,6 +25,7 @@ const AdminView = () => (
       <Routes>
         <Route path="/" element={<Navigate replace to={ADMIN_ROUTES.DISHES} />} />
         <Route path={ADMIN_ROUTES.DISHES} element={<TablePurchaseDishes />} />
+        <Route path={ADMIN_ROUTES.ORDERS} element={<TableOrders />} />
         <Route path={ADMIN_ROUTES.ORGANIZATIONS} element={<TableOrganizations />} />
         <Route path={ADMIN_ROUTES.USERS} element={<TableUsers />} />
         <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />

@@ -25,13 +25,12 @@ export default function AddDishToCart({ dish }) {
               <Typography align="center">
                 {cartItem.count}
               </Typography>
-              {dish.count > cartItem.count && (
-                <IconButton
-                  onClick={() => dispatch(addToCart(dish))}
-                >
-                  <Add color="primary" />
-                </IconButton>
-              )}
+              <IconButton
+                disabled={dish.count <= cartItem.count}
+                onClick={() => dispatch(addToCart(dish))}
+              >
+                <Add color="primary" />
+              </IconButton>
             </>
           )
           : (

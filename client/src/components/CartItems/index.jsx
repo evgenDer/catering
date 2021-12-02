@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CartItems({ items, isEditable, totalPrice }) {
   const classes = useStyles();
   const user = useSelector(currentUser);
-  const isInsufficientFunds = totalPrice > user.account?.balance;
+  const isInsufficientFunds = totalPrice > user.profile?.account.balance;
 
   return (
     <>
@@ -76,7 +76,7 @@ export default function CartItems({ items, isEditable, totalPrice }) {
           </Typography>
         </ListItem>
         <Typography variant="caption" className={clsx(classes.total, { [classes.invalid]: isInsufficientFunds })}>
-          {isInsufficientFunds && '*На вашем счету недостаточно средств. Обратитесь за деталями в вашему организацию'}
+          {isInsufficientFunds && '*На вашем счету недостаточно средств. Обратитесь за деталями в вашу организацию'}
         </Typography>
       </List>
     </>

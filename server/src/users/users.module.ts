@@ -1,3 +1,4 @@
+import { Account } from './accounts/account.entity';
 import { Organization } from './../organizations/organization.entity';
 import { OrganizationsService } from './../organizations/organizations.service';
 import { Module } from '@nestjs/common';
@@ -12,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
 import { User } from './user.entity';
 import { RolesController } from './roles/roles.controller';
 import { HashService } from './hash/hash.service';
+import { AccountsService } from './accounts/accounts.service';
 
 @Module({
   providers: [
@@ -20,10 +22,11 @@ import { HashService } from './hash/hash.service';
     ProfilesService,
     HashService,
     OrganizationsService,
+    AccountsService,
   ],
   controllers: [UsersController, RolesController],
   imports: [
-    TypeOrmModule.forFeature([User, Role, Profile, Organization]),
+    TypeOrmModule.forFeature([User, Role, Profile, Organization, Account]),
     ConfigModule.forRoot(),
   ],
   exports: [
@@ -32,6 +35,7 @@ import { HashService } from './hash/hash.service';
     ProfilesService,
     HashService,
     OrganizationsService,
+    AccountsService,
   ],
 })
 export class UsersModule {}

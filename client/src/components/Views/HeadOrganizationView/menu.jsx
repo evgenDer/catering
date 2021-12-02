@@ -24,11 +24,11 @@ export const MENU = [
     title: 'Организация',
     link: HEAD_ORGANIZATION_ROUTES.ORGANIZATION,
   },
-  {
-    icon: <SvgIcon color="secondary" component={Analytics} />,
-    title: 'Статистика',
-    link: HEAD_ORGANIZATION_ROUTES.STATISTICS,
-  },
+  // {
+  //   icon: <SvgIcon color="secondary" component={Analytics} />,
+  //   title: 'Статистика',
+  //   link: HEAD_ORGANIZATION_ROUTES.STATISTICS,
+  // },
   {
     icon: <SvgIcon color="secondary" component={SupervisedUserCircle} viewBox="0 0 24 24" />,
     title: 'Пользователи',

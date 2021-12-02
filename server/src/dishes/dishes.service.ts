@@ -56,6 +56,18 @@ export class DishesService {
     await this.purchaseRepo.delete(id);
   }
 
+  async decreasePurchaseDishCount(purchaseDishId: number, count: number) {
+    const outdatedDish = await this.purchaseRepo.findOne({
+      relations: this.relations,
+      where: { id: purchaseDishId },
+    });
+
+    return this.purchaseRepo.save({
+      ...outdatedDish,
+      count: Number(outdatedDish.count) - count,
+    });
+  }
+
   async updatePurchaseDish(
     purchaseDishId: number,
     purchaseDish: PurchaseDishDto,

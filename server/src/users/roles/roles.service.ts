@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Role } from './role.entity';
-import { Repository } from 'typeorm';
-import { GetRolesConfigDto } from './roles.dto';
 import { isEmpty } from 'lodash';
+import { Repository } from 'typeorm';
+
+import { Role } from './role.entity';
+import { GetRolesConfigDto } from './roles.dto';
 
 @Injectable()
 export class RolesService {

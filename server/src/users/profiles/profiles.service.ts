@@ -3,15 +3,17 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Profile } from './profile.entity';
 import { Repository } from 'typeorm';
 import { CreateProfileDto, GetProfileDto } from './profiles.dto';
+import { AccountsService } from './../accounts/accounts.service';
 
 @Injectable()
 export class ProfilesService {
   constructor(
     @InjectRepository(Profile)
     private readonly profileRepo: Repository<Profile>,
+    private readonly accountService: AccountsService,
   ) {}
 
-  private relations = ['organization'];
+  private relations = ['organization', 'account'];
 
   getById(id: number) {
     return this.profileRepo.findOne({
@@ -21,7 +23,13 @@ export class ProfilesService {
   }
 
   async create(profileDto: CreateProfileDto): Promise<Profile> {
-    return this.profileRepo.save(profileDto);
+    const account = await this.accountService.createEmptyAccount();
+
+    return this.profileRepo.save({ ...profileDto, account });
+  }
+
+  async update(id: number, profileDto: CreateProfileDto) {
+    return this.profileRepo.update(id, profileDto);
   }
 
   mapToSend({
@@ -32,6 +40,7 @@ export class ProfilesService {
     phone,
     goalCalories,
     organization,
+    account,
   }: Profile): GetProfileDto {
     return {
       id,
@@ -41,6 +50,8 @@ export class ProfilesService {
       phone,
       goalCalories,
       organizationId: organization.id,
+      organizationName: organization.name,
+      account,
     };
   }
 }
