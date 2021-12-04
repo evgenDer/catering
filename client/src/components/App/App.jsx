@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { ROUTES } from 'constants/routes';
-import { AdminView, HeadOrganizationView } from 'components/Views';
+import { AdminView, HeadOrganizationView, UserView} from 'components/Views';
 import { LoginForm, RegisterForm } from 'components/Login';
 import { ROLES } from 'constants/application';
 import * as actions from 'actions/user';
@@ -35,7 +35,7 @@ const App = ({ user, getCurrentUser }) => {
           case ROLES.HEAD_ORGANIZATION:
             return <HeadOrganizationView />;
           case ROLES.USER:
-            return <AdminView />;
+            return <UserView />;
           default:
             return <></>;
           }

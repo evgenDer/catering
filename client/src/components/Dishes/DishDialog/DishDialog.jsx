@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(60),
   },
   field: {
-    marginBottom: theme.spacing(2.5),
+    marginBottom: `${theme.spacing(2.5)}!important`,
   },
 }));
 

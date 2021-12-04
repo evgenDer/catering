@@ -22,3 +22,8 @@ export const STATUSES = [
   'Поступил на рассмотрение',
   'Доставлен',
 ];
+
+export const GENDERS = {
+  MAN: 'Мужской',
+  WOMAN: 'Женский',
+};

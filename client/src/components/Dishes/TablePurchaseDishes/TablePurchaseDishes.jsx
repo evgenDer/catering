@@ -108,7 +108,7 @@ export const TableDishes = ({
 
       setAlert({
         type: 'success',
-        message: 'Dish has been successfully created',
+        message: 'Блюдо успешно добавлено',
       });
     } catch (error) {
       setSubmitting(false);
@@ -134,7 +134,7 @@ export const TableDishes = ({
 
       setAlert({
         type: 'success',
-        message: 'Dish has been successfully updated',
+        message: 'Блюдо успешно обновлено',
       });
     } catch (error) {
       setSubmitting(false);

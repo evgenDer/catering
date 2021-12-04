@@ -75,7 +75,7 @@ export const TableOrganizations = ({
 
       setAlert({
         type: 'success',
-        message: 'Organization has been successfully created',
+        message: 'Организация успешно создана',
       });
     } catch (error) {
       setSubmitting(false);
@@ -98,7 +98,7 @@ export const TableOrganizations = ({
 
       setAlert({
         type: 'success',
-        message: 'Organization has been successfully updated',
+        message: 'Организация успешно обновлена',
       });
     } catch (error) {
       setSubmitting(false);

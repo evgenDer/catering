@@ -91,7 +91,7 @@ const OrganizationProfile = ({
 
       setAlert({
         type: 'success',
-        message: 'Payment has been successfully created',
+        message: 'Платеж успешно добавлен',
       });
     }).catch((error) => {
       setSubmitting(false);

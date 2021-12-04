@@ -6,7 +6,6 @@ import {
   SupervisedUserCircle,
   Payments,
   PersonOutline,
-  ShoppingBasket,
   LocalShipping,
 } from '@mui/icons-material';
 import { SvgIcon } from '@mui/material';
@@ -41,7 +40,7 @@ export const MENU = [
   },
   {
     icon: <SvgIcon color="secondary" component={AddBusiness} viewBox="0 0 24 24" />,
-    title: 'Каталог блюд',
+    title: 'Магазин',
     link: HEAD_ORGANIZATION_ROUTES.SHOP,
   },
   {
