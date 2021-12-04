@@ -15,6 +15,7 @@ import PageCart from 'components/PageCart';
 import { PageActiveOrders } from 'components/Orders';
 import { PageDishes } from 'components/Dishes';
 import { CaloriesCalculatorPage } from 'components/Calories';
+import QuestionPage from 'components/QuestionsPage';
 
 import { MENU } from './menu';
 
@@ -31,7 +32,7 @@ const UserView = () => (
         <Route path={USER_ROUTES.SHOP} element={<PageDishes />} />
         <Route path={USER_ROUTES.CART} element={<PageCart />} />
         <Route path={USER_ROUTES.CALCULATOR} element={<CaloriesCalculatorPage />} />
-        <Route path={USER_ROUTES.QUESTION} element={<>Question</>} />
+        <Route path={USER_ROUTES.QUESTION} element={<QuestionPage />} />
         <Route path={USER_ROUTES.ORDERS} element={<PageActiveOrders />} />
         <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />
       </Routes>

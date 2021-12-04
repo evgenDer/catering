@@ -8,7 +8,6 @@ import {
   Post,
   Req,
 } from '@nestjs/common';
-import { SkipAuth } from 'src/auth/skip-auth.decorator';
 import { User } from './user.entity';
 import { CreateUserDto, GetUserDto } from './users.dto';
 import { UsersService } from './users.service';

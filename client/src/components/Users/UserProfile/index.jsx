@@ -102,7 +102,7 @@ const OrganizationProfile = ({
               </Grid>
             </Grid>
           </Grid>
-          <Grid item spacing={5}>
+          <Grid item>
             <Typography variant="h6">Расходы по дням недели</Typography>
             <UserOrderGraph />
           </Grid>

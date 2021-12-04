@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 import { DishesModule } from './dishes/dishes.module';
 import { AppController } from './app.controller';
@@ -9,10 +10,27 @@ import { OrganizationsModule } from './organizations/organizations.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { OrdersModule } from './orders/orders.module';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    MailerModule.forRoot({
+      transport: {
+        service: 'gmail',
+        auth: {
+          user: process.env.DOMAIN_EMAIL,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        tls: { rejectUnauthorized: false },
+      },
+      defaults: {
+        from: `Система корпоротивного питания Vood ${process.env.DOMAIN_EMAIL}`,
+      },
+    }),
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         port: parseInt(process.env.DB_PORT) || 5432,
@@ -36,6 +54,7 @@ import { OrdersModule } from './orders/orders.module';
     UsersModule,
     AuthModule,
     OrdersModule,
+    EmailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
