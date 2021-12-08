@@ -34,6 +34,9 @@ const theme = createTheme({
       fontWeight: 700,
       color: appColors.secondary,
     },
+    body1: {
+      fontSize: '20px',
+    },
     subtitle1: {
       fontSize: '16px',
       lineHeight: '18.75px',

@@ -1,7 +1,9 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Connection, getManager, Repository } from 'typeorm';
+
 import { Dish } from './dish.entity';
+import { DishDto } from './dish.dto';
 import { PurchaseDishDto } from './purchase-dishes/purchase-dishes.dto';
 import { PurchaseDish } from './purchase-dishes/purchase-dishes.entity';
 
@@ -110,6 +112,16 @@ export class DishesService {
     } finally {
       await queryRunner.release();
     }
+  }
+
+  async createDish(dish: DishDto): Promise<Dish> {
+    return this.dishRepo.save({
+      protein: dish.protein,
+      fat: dish.fat,
+      carbohydrates: dish.carbohydrates,
+      name: dish.name,
+      calories: this.getCalories(dish.protein, dish.fat, dish.carbohydrates),
+    });
   }
 
   async createPurchaseDish(purchaseDish: PurchaseDishDto) {

@@ -22,6 +22,9 @@ export class Profile extends BaseEntity {
   @Column({ type: 'numeric', nullable: true })
   goalCalories: number;
 
+  @Column({ type: 'boolean', nullable: false, default: false })
+  isSharingAvailable: boolean;
+
   @ManyToOne(() => Organization, (organization) => organization.profiles)
   organization: Organization;
 

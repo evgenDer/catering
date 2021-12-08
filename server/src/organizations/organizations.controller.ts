@@ -1,4 +1,3 @@
-import { organizationId } from 'aws-sdk/clients/auditmanager';
 import {
   Controller,
   Get,

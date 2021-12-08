@@ -87,8 +87,6 @@ const CaloriesCalculatorPage = () => {
         values.gender,
       );
 
-      console.log(calories);
-
       setFieldValue('calories', calories);
     }
   };

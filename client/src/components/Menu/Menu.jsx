@@ -23,7 +23,7 @@ import { ROLES } from 'constants/application';
 
 import ListItemLink from './ListItemLink';
 
-const drawerWidth = 300;
+const drawerWidth = 350;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,

@@ -14,16 +14,19 @@ export const validationSchema = Yup.object().shape({
     .max(MAX_LENGTH, `${ERRORS.MAX_LENGTH} ${MAX_LENGTH}`),
   protein: Yup.number()
     .required(ERRORS.REQUIRED)
-    .positive(ERRORS.POSITIVE),
+    .min(0, ERRORS.POSITIVE),
   fat: Yup.number()
     .required(ERRORS.REQUIRED)
-    .positive(ERRORS.POSITIVE),
+    .min(0, ERRORS.POSITIVE),
   carbohydrates: Yup.number()
     .required(ERRORS.REQUIRED)
-    .positive(ERRORS.POSITIVE),
-  cost: Yup.number()
-    .required(ERRORS.REQUIRED)
-    .positive(ERRORS.POSITIVE),
+    .min(0, ERRORS.POSITIVE),
+  cost: Yup.string().when('isPurchasedDish', {
+    is: true,
+    then: Yup.number()
+      .required(ERRORS.REQUIRED)
+      .positive(ERRORS.POSITIVE),
+  }),
   count: Yup.number()
     .required(ERRORS.REQUIRED),
 });

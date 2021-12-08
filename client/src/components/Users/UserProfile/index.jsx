@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { isEmpty } from 'lodash';
 import {
   Paper,
   Grid,
@@ -69,35 +68,35 @@ const OrganizationProfile = ({
                 <Typography>Баланс</Typography>
                 <Grid container className={classes.iconContainer}>
                   <PaymentIcon color="secondary" />
-                  <Typography variant>{`${formatAsPrice(user.profile.account.balance)}`}</Typography>
+                  <Typography>{`${formatAsPrice(user.profile.account.balance)}`}</Typography>
                 </Grid>
               </Grid>
               <Grid item>
                 <Typography>Роль</Typography>
                 <Grid container className={classes.iconContainer}>
                   <PeopleIcon color="secondary" />
-                  <Typography variant>{user.roleName}</Typography>
+                  <Typography>{user.roleName}</Typography>
                 </Grid>
               </Grid>
               <Grid item>
                 <Typography>Организация</Typography>
                 <Grid container className={classes.iconContainer}>
                   <BusinessIcon color="secondary" />
-                  <Typography variant>{user.profile.organizationName}</Typography>
+                  <Typography>{user.profile.organizationName}</Typography>
                 </Grid>
               </Grid>
               <Grid item>
                 <Typography>Электронная почта</Typography>
                 <Grid container className={classes.iconContainer}>
                   <EmailIcon color="secondary" />
-                  <Typography variant>{user.email}</Typography>
+                  <Typography>{user.email}</Typography>
                 </Grid>
               </Grid>
               <Grid item>
                 <Typography>Телефон</Typography>
                 <Grid container className={classes.iconContainer}>
                   <ContactPhoneIcon color="secondary" />
-                  <Typography variant>{user.profile.phone}</Typography>
+                  <Typography>{user.profile.phone}</Typography>
                 </Grid>
               </Grid>
             </Grid>

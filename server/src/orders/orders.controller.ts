@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Req } from '@nestjs/common';
 
 import { SkipAuth } from 'src/auth/skip-auth.decorator';
 import { CreateOrderDto, UpdateOrderDto } from './order.dto';
@@ -9,8 +9,8 @@ export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Post()
-  create(@Body() createOrderDto: CreateOrderDto) {
-    return this.ordersService.create(createOrderDto);
+  create(@Req() req, @Body() createOrderDto: CreateOrderDto) {
+    return this.ordersService.create(createOrderDto, req.user?.id);
   }
 
   @Get()

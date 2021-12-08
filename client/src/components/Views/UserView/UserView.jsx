@@ -14,7 +14,7 @@ import { UserProfile } from 'components/Users';
 import PageCart from 'components/PageCart';
 import { PageActiveOrders } from 'components/Orders';
 import { PageDishes } from 'components/Dishes';
-import { CaloriesCalculatorPage } from 'components/Calories';
+import { CaloriesCalculatorPage, CaloriesDiaryPage } from 'components/Calories';
 import QuestionPage from 'components/QuestionsPage';
 
 import { MENU } from './menu';
@@ -26,7 +26,7 @@ const UserView = () => (
       <DrawerHeader />
       <Routes>
         <Route path="/" element={<Navigate replace to={USER_ROUTES.PROFILE} />} />
-        <Route path={USER_ROUTES.DIARY} element={<>Diary</>} />
+        <Route path={USER_ROUTES.DIARY} element={<CaloriesDiaryPage />} />
         <Route path={USER_ROUTES.PROFILE} element={<UserProfile />} />
         <Route path={USER_ROUTES.FRIENDS} element={<>Friends</>} />
         <Route path={USER_ROUTES.SHOP} element={<PageDishes />} />

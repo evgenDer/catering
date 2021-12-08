@@ -20,7 +20,7 @@ export class Organization extends BaseEntity {
   isActive: boolean;
 
   @OneToMany(() => Profile, (profile) => profile.organization)
-  profiles: User[];
+  profiles: Profile[];
 
   @OneToMany(() => OrganizationPayment, (profile) => profile.organization)
   payments: OrganizationPayment[];

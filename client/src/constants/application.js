@@ -27,3 +27,10 @@ export const GENDERS = {
   MAN: 'Мужской',
   WOMAN: 'Женский',
 };
+
+export const MEALS = {
+  BREAKFAST: 'Завтрак',
+  LUNCH: 'Обед',
+  DINNER: 'Ужин',
+  SNACK: 'Перекус',
+};

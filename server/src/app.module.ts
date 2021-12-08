@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { OrdersModule } from './orders/orders.module';
 import { EmailModule } from './email/email.module';
+import { ConsumptionModule } from './consumption/consumption.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { EmailModule } from './email/email.module';
     AuthModule,
     OrdersModule,
     EmailModule,
+    ConsumptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

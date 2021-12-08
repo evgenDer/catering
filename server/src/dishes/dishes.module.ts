@@ -9,5 +9,6 @@ import { PurchaseDish } from './purchase-dishes/purchase-dishes.entity';
   imports: [TypeOrmModule.forFeature([Dish, PurchaseDish])],
   controllers: [DishesController],
   providers: [DishesService],
+  exports: [DishesService],
 })
 export class DishesModule {}

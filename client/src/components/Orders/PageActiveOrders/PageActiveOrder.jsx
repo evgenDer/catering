@@ -66,6 +66,7 @@ const PageActiveOrders = ({ orders, getAllOrders }) => {
                   <Typography variant="caption">
                     {`Количество: ${order.count}`}
                   </Typography>
+                  <br />
                   <Typography variant="caption">
                     {`Время создания: ${new Date(order.createdAt).toLocaleString()}`}
                   </Typography>

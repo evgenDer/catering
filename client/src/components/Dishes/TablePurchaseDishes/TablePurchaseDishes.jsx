@@ -171,6 +171,7 @@ export const TableDishes = ({
                 open={open}
                 onCancel={handleCloseDialog}
                 onConfirm={handleCreateDish}
+                isPurchasedDish
               />
               <Button
                 startIcon={<AddIcon />}
@@ -188,6 +189,7 @@ export const TableDishes = ({
                 open={open}
                 onCancel={handleCloseDialog}
                 onConfirm={handleUpdateDish}
+                isPurchasedDish
               />
               <Button
                 startIcon={<EditIcon />}

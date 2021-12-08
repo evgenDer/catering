@@ -42,15 +42,15 @@ export const cartSlice = createSlice({
   },
 });
 
-export const addToCart = (product) => async (dispatch) => {
+export const addToCart = (product) => (dispatch) => {
   dispatch(cartSlice.actions.addToCart(product));
 };
 
-export const removeFromCart = (product) => async (dispatch) => {
+export const removeFromCart = (product) => (dispatch) => {
   dispatch(cartSlice.actions.removeFromCart(product));
 };
 
-export const clearCart = () => async (dispatch) => {
+export const clearCart = () => (dispatch) => {
   dispatch(cartSlice.actions.clearCart());
 };
 

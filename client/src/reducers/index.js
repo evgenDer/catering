@@ -7,6 +7,7 @@ import roles from './roles';
 import counterReducer from './counter';
 import cartReducer from './cart';
 import orderReducer from './order';
+import consumptions from './consumption';
 
 export default combineReducers({
   dishes,
@@ -19,4 +20,5 @@ export default combineReducers({
   cart: cartReducer,
   orders: orderReducer.orders,
   activeOrders: orderReducer.activeOrders,
+  consumptions,
 });

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(60),
   },
   field: {
-    marginBottom: `${theme.spacing(2.5)}!important`,
+    margin: `${theme.spacing(1)} 0 ${theme.spacing(1.5)} 0!important`,
   },
 }));
 
@@ -25,13 +25,14 @@ const DishesDialog = ({
   onCancel,
   onConfirm,
   initialValues,
+  isPurchasedDish,
 }) => {
   const classes = useStyles();
 
   return (
     <Formik
       enableReinitialize
-      initialValues={initialValues}
+      initialValues={{ ...initialValues, isPurchasedDish }}
       validationSchema={validationSchema}
       onSubmit={onConfirm}
     >
@@ -55,11 +56,13 @@ const DishesDialog = ({
             <Form>
               <Grid container className={classes.container}>
                 <Grid container>
-                  <UploaderImage
-                    imageUrl={values.imageUrl}
-                    setFile={(file) => setFieldValue('file', file)}
-                    setImageUrl={setFieldValue}
-                  />
+                  {isPurchasedDish && (
+                    <UploaderImage
+                      imageUrl={values.imageUrl}
+                      setFile={(file) => setFieldValue('file', file)}
+                      setImageUrl={setFieldValue}
+                    />
+                  )}
                 </Grid>
                 <Grid container>
                   <Field
@@ -135,21 +138,23 @@ const DishesDialog = ({
                     required
                   />
                 </Grid>
-                <Grid container>
-                  <Field
-                    as={TextField}
-                    type="number"
-                    name="cost"
-                    label="Цена"
-                    variant="outlined"
-                    size="small"
-                    className={classes.field}
-                    error={!!errors.cost}
-                    helperText={errors.cost}
-                    fullWidth
-                    required
-                  />
-                </Grid>
+                {isPurchasedDish && (
+                  <Grid container>
+                    <Field
+                      as={TextField}
+                      type="number"
+                      name="cost"
+                      label="Цена"
+                      variant="outlined"
+                      size="small"
+                      className={classes.field}
+                      error={!!errors.cost}
+                      helperText={errors.cost}
+                      fullWidth
+                      required
+                    />
+                  </Grid>
+                )}
               </Grid>
             </Form>
           </ConfirmationDialog>
@@ -164,10 +169,12 @@ DishesDialog.propTypes = {
   onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
   initialValues: DishPropTypes,
+  isPurchasedDish: PropTypes.bool,
 };
 
 DishesDialog.defaultProps = {
   initialValues: {},
+  isPurchasedDish: false,
 };
 
 export default DishesDialog;

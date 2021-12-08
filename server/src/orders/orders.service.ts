@@ -1,3 +1,4 @@
+import { ConsumptionService } from './../consumption/consumption.service';
 import { StatusesService } from './statuses/statuses.service';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -17,6 +18,7 @@ export class OrdersService {
     private readonly accountService: AccountsService,
     private readonly dishesService: DishesService,
     private readonly statusesService: StatusesService,
+    private readonly consumptionService: ConsumptionService,
   ) {}
 
   private readonly relations = [
@@ -27,7 +29,7 @@ export class OrdersService {
     'account.profile',
   ];
 
-  async create(createOrderDto: CreateOrderDto) {
+  async create(createOrderDto: CreateOrderDto, userId: number) {
     const { address, accountId, comment, totalCost } = createOrderDto;
 
     const status = await this.statusesService.getByStatusName();
@@ -38,6 +40,8 @@ export class OrdersService {
         purchasedDishId,
         count,
       );
+
+      this.consumptionService.create(purchaseDish.dish.id, userId);
 
       this.orderRepo.save({
         purchaseDish,
