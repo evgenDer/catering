@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PageTitle from 'components/PageTitle';
 import { GENDERS } from 'constants/application';
 import { calculateCalories } from 'utils/calculation';
+import { updateGoalCalories } from 'actions/user';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,23 +53,17 @@ const CaloriesCalculatorPage = () => {
   const [alert, setAlert] = useState(null);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [initialValues, setInitialValues] = useState({ weight: 0, height: 0, calories: 0 });
+  const dispatch = useDispatch();
 
   const handleUpdate = async (values, { setSubmitting }) => {
-    // register(valuesIn).then(() => {
-    //   setSubmitting(false);
+    dispatch(updateGoalCalories(values.calories));
 
-    //   setAlert({
-    //     type: 'success',
-    //     message: 'Цель по калориям успешно обновлена',
-    //   });
-    // }).catch((error) => {
-    //   setAlert({
-    //     type: 'error',
-    //     message: error.message,
-    //   });
-    // }).finally(() => {
-    //   setSubmitting(false);
-    // });
+    setInitialValues({ weight: 0, height: 0, calories: 0 });
+    setAlert({
+      type: 'success',
+      message: 'Цель по калориям успешно обновлена',
+    });
+    setSubmitting(false);
   };
 
   const handleCloseSnackbar = () => {

@@ -11,5 +11,6 @@ export const createPayloadFromValues = (values, roles) => ({
     birthday: values.birthday,
     phone: values.phone,
     goalCalories: values.goalCalories || null,
+    isSharingAvailable: values.roleName === ROLES.USER && values.isSharingAvailable,
   } : null,
 });

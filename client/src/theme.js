@@ -1,12 +1,14 @@
 import { createTheme } from '@mui/material';
 import { ruRU } from '@mui/material/locale';
 
-const appColors = {
+export const appColors = {
   background: '#f9f9fb',
   white: '#ffffff',
   primary: '#fb9500',
   secondary: '#54419e',
-  chartColor: '#9588bc',
+  chartProteinColor: '#fb9500',
+  chartFatColor: '#FB1800',
+  chartCarbohydratesColor: '#E4FB00',
   dangerous: '#FF0000',
   darkPrimary: '#FF8C00',
 };

@@ -1,9 +1,9 @@
 import { http } from './config';
 
-export const getAllConsumption = async () => {
+export const getAllConsumption = async (userId) => {
   try {
     const response = await http.get(
-      'consumptions',
+      `consumptions?userId=${userId}`,
     );
 
     return response;

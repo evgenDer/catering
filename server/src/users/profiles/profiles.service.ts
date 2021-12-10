@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Profile } from './profile.entity';
 import { Repository } from 'typeorm';
+import { omit } from 'lodash';
+
+import { Profile } from './profile.entity';
 import { CreateProfileDto, GetProfileDto } from './profiles.dto';
 import { AccountsService } from './../accounts/accounts.service';
 
@@ -29,7 +31,7 @@ export class ProfilesService {
   }
 
   async update(id: number, profileDto: CreateProfileDto) {
-    return this.profileRepo.update(id, profileDto);
+    return this.profileRepo.update(id, omit(profileDto, 'organizationName'));
   }
 
   mapToSend({

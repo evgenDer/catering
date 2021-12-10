@@ -17,8 +17,6 @@ import { isEmpty, isUndefined } from 'lodash';
 import * as actions from 'actions/order';
 import { DAYS } from 'constants/application';
 
-import { OrderPropType } from '../sharedPropTypes';
-
 ChartJS.register(
   CategoryScale,
   LinearScale,

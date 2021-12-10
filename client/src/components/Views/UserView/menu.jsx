@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   AddBusiness,
+  Analytics,
   Calculate,
   PersonOutline,
   LocalShipping,
@@ -22,6 +23,11 @@ export const MENU = [
     icon: <SvgIcon color="secondary" component={LibraryBooks} viewBox="0 0 24 24" />,
     title: 'Дневник калорийности',
     link: USER_ROUTES.DIARY,
+  },
+  {
+    icon: <SvgIcon color="secondary" component={Analytics} />,
+    title: 'Статистика',
+    link: USER_ROUTES.STATISTICS,
   },
   {
     icon: <SvgIcon color="secondary" component={AddBusiness} viewBox="0 0 24 24" />,

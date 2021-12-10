@@ -37,8 +37,13 @@ export const validationSchema = Yup.object().shape({
     }),
   goalCalories: Yup.number()
     .when('roleName', {
-      is: (roleName) => roleName !== ROLES.ADMIN,
+      is: (roleName) => roleName === ROLES.USER,
       then: Yup.number().positive(ERRORS.POSITIVE),
+    }),
+  isSubmittingAvailable: Yup.boolean()
+    .when('roleName', {
+      is: (roleName) => roleName === ROLES.USER,
+      then: Yup.boolean(),
     }),
   phone: Yup.string().trim()
     .when('roleName', {

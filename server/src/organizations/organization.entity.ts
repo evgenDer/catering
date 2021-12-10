@@ -3,7 +3,6 @@ import { Entity, Column, OneToMany } from 'typeorm';
 
 import { Profile } from './../users/profiles/profile.entity';
 import { BaseEntity } from '../base.entity';
-import { User } from 'src/users/user.entity';
 
 @Entity({ name: 'organization' })
 export class Organization extends BaseEntity {

@@ -1,8 +1,9 @@
 import * as ConsumptionService from 'api/consumption';
 import * as types from 'constants/actionTypes';
 
-export const getAllConsumption = () => async (dispatch) => {
-  const { data } = await ConsumptionService.getAllConsumption();
+export const getAllConsumption = (userId) => async (dispatch, getState) => {
+  const { user } = getState();
+  const { data } = await ConsumptionService.getAllConsumption(userId || user.id);
 
   dispatch({
     type: types.RETRIEVE_CONSUMPTION,

@@ -25,7 +25,11 @@ export class Profile extends BaseEntity {
   @Column({ type: 'boolean', nullable: false, default: false })
   isSharingAvailable: boolean;
 
+  @Column({ type: 'int4', nullable: true })
+  organizationId: number;
+
   @ManyToOne(() => Organization, (organization) => organization.profiles)
+  @JoinColumn({ name: 'organizationId' })
   organization: Organization;
 
   @OneToOne(() => User, (user) => user.profile)

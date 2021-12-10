@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import { Grid, Paper, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 import PageTitle from 'components/PageTitle';
 import * as actions from 'actions/consumption';
-import { currentUser } from 'reducers/user';
+import { currentUserFriend, currentUser } from 'reducers/user';
 import { MEALS } from 'constants/application';
 
 import CaloriesMeal from './CaloriesMeal';
@@ -24,22 +25,31 @@ const useStyles = makeStyles((theme) => ({
     border: `${theme.spacing(0.1)}`,
     fontSize: theme.spacing(2),
   },
+  friendTitle: {
+    marginBottom: theme.spacing(2),
+    color: theme.appColors.primary,
+  },
 }));
 
 const DiaryPage = ({ consumptions, getConsumptions }) => {
   const classes = useStyles();
-
-  const user = useSelector(currentUser);
+  const { id: userId } = useParams();
+  const user = useSelector(userId ? currentUserFriend : currentUser);
   const total = Object.values(consumptions).reduce((curr, acc) => curr + acc.total.calories, 0);
 
   useEffect(() => {
-    getConsumptions();
+    getConsumptions(userId);
   }, []);
 
   return (
     <>
-      <PageTitle>Дневник текущей калорийности</PageTitle>
+      <PageTitle>{`Дневник текущей калорийности ${userId ? 'друга' : ''}`}</PageTitle>
       <Paper className={classes.root}>
+        {userId && (
+          <Typography className={classes.friendTitle} variant="h5">
+            {`Вы просматриваете дневник ${user.profile.name} ${user.profile.surname}`}
+          </Typography>
+        )}
         <Grid>
           <Typography variant="h6">Осталось калорий</Typography>
           <Grid container spacing={3}>
@@ -71,6 +81,7 @@ const DiaryPage = ({ consumptions, getConsumptions }) => {
                 isFirstElement={!index}
                 dishes={consumptions[meal]?.dishes}
                 total={consumptions[meal]?.total}
+                isCurrentUserMeal={!userId}
               />
             ))}
           </table>

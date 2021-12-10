@@ -55,3 +55,36 @@ export const getUsersFromOrganization = async (organizationId) => {
     return error;
   }
 };
+
+export const getUserById = async (userId) => {
+  try {
+    const response = await http.get(`/users/friend/${userId}`);
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+export const getAvailableSharingUsers = async (organizationId) => {
+  try {
+    const response = await http.get(`/users/organization/${organizationId}/sharing`);
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+export const updateUserProfile = async (userId, profile) => {
+  try {
+    const response = await http.put(`/users/${userId}`, profile);
+
+    return response;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};

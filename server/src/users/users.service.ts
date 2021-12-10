@@ -26,6 +26,29 @@ export class UsersService {
     return this.userRepo.find({ relations: this.relations });
   }
 
+  async getAvailableSharingUsersFromOrganization(
+    organizationId: number,
+  ): Promise<User[]> {
+    // TODO: move to sql query
+    const organization = await this.organizationsService.getById(
+      organizationId,
+    );
+    const profileIds = organization.profiles
+      .filter(({ isSharingAvailable }) => isSharingAvailable)
+      .map(({ id }) => id);
+
+    return this.userRepo.find({
+      relations: this.relations,
+      where: {
+        profile:
+          profileIds.length &&
+          Raw((alias) => `${alias} in (:...profileIds)`, {
+            profileIds,
+          }),
+      },
+    });
+  }
+
   async getUsersFromOrganization(organizationId: number): Promise<User[]> {
     // TODO: move to sql query
     const organization = await this.organizationsService.getById(

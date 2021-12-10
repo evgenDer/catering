@@ -4,6 +4,8 @@ import {
   LOGOUT,
   REGISTER,
   RETRIEVE_USERS,
+  RETRIEVE_CURRENT_FRIEND,
+  UPDATE_USER_GOAL_CALORIES,
 } from 'constants/actionTypes';
 import { getToken } from 'utils/token';
 
@@ -14,6 +16,7 @@ const initialState = {
 };
 
 export const currentUser = (state) => state.user;
+export const currentUserFriend = (state) => state.currentFriend;
 
 const userReducer = {
   user: (user = initialState, action) => {
@@ -47,6 +50,12 @@ const userReducer = {
         loading: false,
       };
 
+    case UPDATE_USER_GOAL_CALORIES:
+      return {
+        ...user,
+        profile: action.payload,
+      };
+
     default:
       return user;
     }
@@ -57,6 +66,15 @@ const userReducer = {
       return action.payload || [];
     default:
       return users;
+    }
+  },
+  currentFriend: (currentFriend = {}, action) => {
+    switch (action.type) {
+    case RETRIEVE_CURRENT_FRIEND:
+
+      return action.payload || {};
+    default:
+      return currentFriend;
     }
   },
 };

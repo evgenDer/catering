@@ -44,12 +44,10 @@ export class ConsumptionController {
   }
 
   @Get()
-  async findAll(@Req() req, @Query() query: { date: string }) {
-    const userId = req.user?.id;
-
+  async findAll(@Query() query: { date: string; userId: number }) {
     const data = query.date
-      ? await this.consumptionService.getAllByDate(userId, query.date)
-      : await this.consumptionService.getAllToday(userId);
+      ? await this.consumptionService.getAllByDate(query.userId, query.date)
+      : await this.consumptionService.getAllToday(query.userId);
 
     return data.reduce((currentConsumption, consumption) => {
       const { id, dish, count } = consumption;

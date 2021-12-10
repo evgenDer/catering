@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@mui/styles';
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 
@@ -44,6 +44,7 @@ const CaloriesMeal = ({
   dishes,
   isFirstElement,
   total,
+  isCurrentUserMeal,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -114,26 +115,32 @@ const CaloriesMeal = ({
           <td>{dish.carbohydrates}</td>
           <td>{dish.fat}</td>
           <td>{dish.protein}</td>
-          <td className={classes.delete}>
-            <IconButton
-              className={classes.delete}
-              onClick={() => handleDelete(
-                dish.consumptionId,
-                mealName,
-              )}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </td>
+          {isCurrentUserMeal && (
+            <td className={classes.delete}>
+              <IconButton
+                className={classes.delete}
+                onClick={() => handleDelete(
+                  dish.consumptionId,
+                  mealName,
+                )}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </td>
+          )}
         </tr>
       ))}
       <tr className={classes.bottomRow}>
         <td className={classes.firstRow}>
-          <Button
-            onClick={handleOpenDialog}
-          >
-            Добавить блюдо
-          </Button>
+          {isCurrentUserMeal ? (
+            <Button
+              onClick={handleOpenDialog}
+            >
+              Добавить блюдо
+            </Button>
+          ) : (
+            <Typography>Итог</Typography>
+          )}
         </td>
         <td>{total.calories}</td>
         <td>{total.carbohydrates}</td>
@@ -154,6 +161,7 @@ CaloriesMeal.propTypes = {
   }),
   mealName: PropTypes.string.isRequired,
   isFirstElement: PropTypes.bool.isRequired,
+  isCurrentUserMeal: PropTypes.bool,
 };
 
 CaloriesMeal.defaultProps = {
@@ -164,6 +172,7 @@ CaloriesMeal.defaultProps = {
     fat: 0,
     carbohydrates: 0,
   },
+  isCurrentUserMeal: false,
 };
 
 export default CaloriesMeal;

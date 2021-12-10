@@ -14,6 +14,7 @@ export default combineReducers({
   roles,
   user: userReducer.user,
   users: userReducer.users,
+  currentFriend: userReducer.currentFriend,
   organization: organizationReducer.organization,
   organizations: organizationReducer.organizations,
   counter: counterReducer,
